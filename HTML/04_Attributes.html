@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attributes</title>
+</head>
+<body>
+    <h1>HTML Attributes</h1>
+    <p>HTML attributes provide additional information about HTML elements. They are always specified in the opening tag and usually come in name/value pairs like <code>name="value"</code>.</p>
+    
+    <h2>Common HTML Attributes</h2>
+    <ul>
+        <li><strong>id</strong>: Specifies a unique id for an element.</li>
+        <li><strong>class</strong>: Specifies one or more class names for an element.</li>
+        <li><strong>style</strong>: Specifies inline CSS styles for an element.</li>
+        <li><strong>title</strong>: Specifies extra information about an element (displayed as a tooltip).</li>
+        <li><strong>lang</strong>: Specifies the language of the element's content.</li>
+        <li><strong>dir</strong>: Specifies the text direction for the content in an element.</li>
+    </ul>
+
+    <h2>Example of Attributes in Use</h2>
+    <p>The following example demonstrates the use of various attributes:</p>
+    <div id="exampleDiv" class="exampleClass" style="color: blue;" title="This is a div element" lang="en" dir="ltr">
+        This is a div element with multiple attributes.
+    </div>
+
+    <dl>
+        <dt>id</dt>
+        <dd>The <code>id</code> attribute is used to uniquely identify an element. It can be used for styling with CSS or for targeting with JavaScript.</dd>
+        <dt>class</dt>
+        <dd>The <code>class</code> attribute is used to define one or more class names for an element. Classes can be used to apply CSS styles to multiple elements.</dd>
+        <dt>style</dt>
+        <dd>The <code>style</code> attribute is used to apply inline CSS styles directly to an element.</dd>
+        <dt>title</dt>
+        <dd>The <code>title</code> attribute provides additional information about an element, which is often displayed as a tooltip when the user hovers over the element.</dd>
+        <dt>lang</dt>
+        <dd>The <code>lang</code> attribute specifies the language of the element's content, which can help search engines and browsers understand the content better.</dd>
+        <dt>dir</dt>
+        <dd>The <code>dir</code> attribute specifies the text direction for the content in an element. It can take values like "ltr" (left-to-right) or "rtl" (right-to-left).</dd>
+        <dt> src</dt>
+        <dd>The <code>src</code> attribute specifies the URL of an external resource, such as an image or a script. It is commonly used in <code>&lt;img&gt;</code> and <code>&lt;script&gt;</code> tags.</dd>
+        <dt> href</dt>
+        <dd>The <code>href</code> attribute specifies the URL of the page the link goes to. It is used in <code>&lt;a&gt;</code> tags to create hyperlinks.</dd>
+        <dt> alt</dt>
+        <dd>The <code>alt</code> attribute provides alternative text for an image if the image cannot be displayed. It is important for accessibility and SEO.</dd>
+        <dt> width</dt>
+        <dd>The <code>width</code> attribute specifies the width of an element, such as an image or a video. It can be defined in pixels or as a percentage.</dd>
+        <dt> height</dt>
+        <dd>The <code>height</code> attribute specifies the height of an element, such as an image or a video. It can be defined in pixels or as a percentage.</dd>
+        <dt> target</dt>
+        <dd>The <code>target</code> attribute specifies where to open the linked document. It can take values like "_self", "_blank", "_parent", or "_top".</dd> 
+        <dt> type</dt>
+        <dd>The <code>type</code> attribute specifies the type of an element, such as the type of input in a form or the type of button. It is commonly used in <code>&lt;input&gt;</code> and <code>&lt;button&gt;</code> tags.</dd>
+    </dl>
+    
+
+   <h2>Types of Attributes</h2>
+    <p>HTML attributes can be categorized into different types based on their functionality and usage.</p>
+    <h3>1. Global Attributes</h3>   
+    <p>Global attributes can be used on any HTML element. Examples include:</p>
+    <ul> 
+        <li>id</li>
+        <li>class</li>
+        <li>style</li>
+        <li>title</li>
+        <li>lang</li>
+        <li>dir</li>
+        <li>hidden</li>
+    </ul>
+    <h3>2. Event Attributes</h3>
+    <p>Event attributes are used to handle events in HTML elements. Examples include:</p>
+    <ul>
+        <li>onclick</li>
+        <li>onmouseover</li>
+        <li>onmouseout</li>
+        <li>onchange</li>
+        <li>onsubmit</li>   
+    </ul>
+    <h3>3. Specific Attributes</h3>
+    <p>Specific attributes are used for specific HTML elements. Examples include:</p>
+    <ul>
+        <li>src (for &lt;img&gt; and &lt;script&gt;)</li>
+        <li>href (for &lt;a&gt;)</li>
+        <li>alt (for &lt;img&gt;)</li>
+        <li>width and height (for &lt;img&gt; and &lt;video&gt;)</li>
+        <li>target (for &lt;a&gt;)</li>
+        <li>type (for &lt;input&gt;, &lt;button&gt;, and &lt;script&gt;)</li>
+    </ul>
+
+    <p>You can use both cases for attributes but itis recommended to use lowercase for consistency.</p>
+    <p>ALways quote attribute values. </p>
+    <p>Boolean attributes are attributes that can only have two values: the attribute name itself (when the attribute is present) or the absence of the attribute (when it is not present). They donot require a value.</p>
+    <p>Order of attributes does not matter. You can use any order for attributes in an HTML element. But common practice is to place global attributes, then specific attributes and then event attributes.</p>
+    
+    </body>
+</html>
