@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to Web</title>
+</head>
+<body>
+    <h1>Web Browsers</h1>
+    <p>
+        browsers liek chrome, firefox, edge, safari, and opera are the most popular web browsers used to access the internet. Each browser has its own unique features and capabilities, but they all serve the same purpose of allowing users to view and interact with web content.
+        when you type www.example.com into the address bar and press Enter, your browser will send a request to the example.com server, which will then respond with the appropriate web page content for your browser to display.
+    </p>
+
+    <h1>Web Servers</h1>
+    <p>
+        web servers are computers that store and deliver web pages to users when they request them. when you visit a website, your browser sends a request to the website's server, which then responds with the appropriate web page content for your browser to display.
+    </p>    
+
+    <h1>URL parsing</h1>
+    <p>
+        A URL (Uniform Resource Locator) is the address used to access resources on the web, such as websites, images, or files.
+        URL parsing is the process of breaking down a URL into its component parts, such as the protocol, domain, path, and query parameters. This allows web browsers and servers to understand and process the requested resource.
+    </p>
+    <p>Component parts of a URL:</p>
+    <ul>
+        <li>Protocol: The method used to access the resource (e.g., http, https)</li>
+        <li>Domain: The server where the resource is located (e.g., www.example.com)</li>
+        <li>Path: The location of the resource on the server (e.g., /page.html)</li>
+        <li>Query parameters: Additional information passed to the server (e.g., ?id=123&amp;name=John)</li>
+    </ul>
+    <h1>DNS Lookup</h1>
+    <p>
+        DNS (Domain Name System) lookup is the process of translating a domain name (e.g., www.example.com) into an IP address that can be used to locate the server hosting the requested resource. This allows users to access websites using easy-to-remember domain names instead of complex IP addresses.
+    </p>
+
+    <h1>HTTP Requests and Responses</h1>
+    <p>
+        HTTP (Hypertext Transfer Protocol) is the protocol used for communication between web browsers and servers. When a user requests a web page, the browser sends an HTTP request to the server, which then responds with an HTTP response containing the requested content.
+    </p>
+
+    <h1>Web Protocols</h1>
+    <p>
+        Web protocols are the rules and conventions that govern how data is transmitted over the internet. Some of the most common web protocols include HTTP (Hypertext Transfer Protocol), HTTPS (Hypertext Transfer Protocol Secure), and FTP (File Transfer Protocol).
+    </p>
+    <p>TCP (Transmission Control Protocol) is a fundamental protocol in the internet protocol suite that provides reliable, ordered, and error-checked delivery of data between applications running on hosts communicating via the internet.</p>
+    <p>IP (Internet Protocol) is the primary protocol in the internet protocol suite that provides logical addressing and routing of data packets between devices on a network.</p>
+    <p>TLS (Transport Layer Security) is a cryptographic protocol that provides secure communication over a computer network, commonly used to secure web traffic (HTTPS).</p>
+    <p>SSL (Secure Sockets Layer) is an older cryptographic protocol that provides secure communication over a computer network, commonly used to secure web traffic (HTTPS).</p>
+
+    <h1>Database</h1>
+    <p>
+        A database is an organized collection of structured information or data stored electronically. Databases are used to store and manage data for various applications, including web applications. Web servers often interact with databases to retrieve and store information, such as user data, product information, or content for web pages. <br>
+        SQL (Structured Query Language) is a standard programming language used to manage and manipulate relational databases. It allows users to create, read, update, and delete data in a database. <br>
+        NoSQL databases are a type of database that provides a mechanism for storage and retrieval of data that is modeled in means other than the tabular relations used in relational databases. NoSQL databases are often used for large-scale data storage and real-time web applications.
+    </p>
+
+    <h1>Rendering the web page</h1>
+    <p>
+        Rendering is the process by which a web browser displays the content of a web page. When a browser receives an HTML document, it parses the markup and creates a Document Object Model (DOM) tree. The browser then uses CSS to style the elements and JavaScript to add interactivity. Finally, the browser renders the visual representation of the page on the screen.
+        <br>
+    HTML CSS and JavaScript are the core technologies used to create and render web pages. HTML provides the structure and content, CSS defines the presentation and layout, and JavaScript enables dynamic behavior and interactivity.
+    </p>
+
+    <h1>Web Security</h1>
+    <p>
+        Web security is a critical aspect of web development and administration. It involves protecting web applications and their users from various threats and vulnerabilities. Some common web security concerns include cross-site scripting (XSS), SQL injection, and man-in-the-middle attacks.
+        <li>
+            Key elements of web security include:
+            <ul>
+                <li>Authentication: Verifying the identity of users accessing a web application.</li>
+                <li>Authorization: Controlling access to resources based on user roles and permissions.</li>
+                <li>Encryption: Protecting data in transit and at rest using cryptographic techniques.</li>
+                <li>Input validation: Ensuring that user input is properly sanitized and validated to prevent security vulnerabilities.</li>
+                <li>Secure coding practices: Following best practices for writing secure code to minimize vulnerabilities.</li>
+                <li>Cookies and Sessions: Managing user sessions and storing authentication information securely.</li>
+                <li>Security headers: Implementing HTTP security headers to protect against common web vulnerabilities.</li>
+                <li>Regular updates and patching: Keeping web applications and server software up to date to address known security issues.</li>
+                <li>Content Security Policy (CSP): Implementing CSP to prevent cross-site scripting (XSS) attacks.</li>
+            </ul>
+        </li>
+    </p>
+
+    <h1>Full Process in Action</h1>
+    <p>
+        When a user enters a URL in the browser's address bar and presses Enter, the following steps occur:
+        <ol>
+            <li>The browser performs a DNS lookup to resolve the domain name into an IP address.</li>
+            <li>The browser establishes a TCP connection with the web server using the resolved IP address.</li>
+            <li>The browser sends an HTTP request to the server for the requested resource.</li>
+            <li>The server processes the request and sends back an HTTP response containing the requested content.</li>
+            <li>The browser receives the response, parses the HTML, CSS, and JavaScript, and renders the web page on the screen.</li>
+            <li>Any additional resources (images, scripts, stylesheets) referenced in the HTML are requested and loaded by the browser as needed.</li>
+        </ol>
+
+    </p>
+<hr>
+    <h1>END</h1>
+
+</body>
+</html>
