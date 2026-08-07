@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Semantics</title>
+</head>
+<body>
+    <h1>HTML Semantics</h1>
+    <p>HTML semantics refers to the use of HTML elements that convey meaning and structure to the content of a webpage. Semantic elements provide information about the type of content they contain, making it easier for browsers, search engines, and assistive technologies to understand the content.</p>
+    <h2>Importance of Semantic HTML</h2>
+    <ul>
+        <li>Improves accessibility for users with disabilities.</li>
+        <li>Enhances search engine optimization (SEO).</li>
+        <li>Makes the code more readable and maintainable.</li>
+        <li>Helps browsers render content more effectively.</li>
+    </ul>
+    <h2>Common Semantic HTML Elements</h2>
+    <dl>
+        <dt>&lt;header&gt;</dt>
+        <dd>Represents introductory content or a set of navigational links.</dd>
+        <dt>&lt;nav&gt;</dt>
+        <dd>Defines a section of navigation links.</dd>
+        <dt>&lt;main&gt;</dt>
+        <dd>Specifies the main content of a document.</dd>
+        <dt>&lt;article&gt;</dt>
+        <dd>Represents a self-contained piece of content that can be independently distributed or reused.</dd>
+        <dt>&lt;section&gt;</dt>
+        <dd>Defines a thematic grouping of content, typically with a heading.</dd>
+        <dt>&lt;aside&gt;</dt>
+        <dd>Represents content that is tangentially related to the content around it, such as sidebars or call-out boxes.</dd>
+        <dt>&lt;footer&gt;</dt>
+        <dd>Defines footer content for its nearest sectioning content or the entire page.</dd>
+        <dt>&lt;figure&gt;</dt>
+        <dd>Represents self-contained content, often with a caption, such as images, diagrams, or code snippets.</dd>
+        <dt>&lt;figcaption&gt;</dt> 
+        <dd>Provides a caption or legend for the &lt;figure&gt; element.</dd>
+        <dt>&lt;mark&gt;</dt>
+        <dd>Represents text that is highlighted or marked for reference.</dd>
+        <dt>&lt;time&gt;</dt>   
+        <dd>Represents a specific period in time or a date/time value.</dd> 
+        <dt> &lt;Details&gt;</dt>
+        <dd>Represents additional information that the user can view or hide on demand.</dd>
+        <dt>&lt;summary&gt;</dt>    
+        <dd>Provides a summary or caption for the &lt;details&gt; element.</dd> 
+
+    </dl>
+    <h2>Example of Semantic HTML Structure</h2>
+    <p>Here is an example of a simple webpage structure using semantic HTML elements:</p>
+    <pre>
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;title&gt;Semantic HTML Example&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;header&gt;
+                &lt;h1&gt;My Website&lt;/h1&gt;
+                &lt;nav&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/nav&gt;
+            &lt;/header&gt;
+
+            &lt;main&gt;
+                &lt;article&gt;
+                    &lt;h2&gt;Article Title&lt;/h2&gt;
+                    &lt;p&gt;This is the main content of the article.&lt;/p&gt;
+                &lt;/article&gt;
+
+                &lt;aside&gt;
+                    &lt;p&gt;This is some additional information related to the article.&lt;/p&gt;
+                &lt;/aside&gt;
+
+                &lt;section&gt;
+                    &lt;h2&gt;Section Title&lt;/h2&gt;
+                    &lt;p&gt;This section contains related content.&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/main&gt;
+            &lt;Details&gt;
+                &lt;summary&gt;More Information&lt;/summary&gt;
+                &lt;p&gt;This is additional information that can be expanded or collapsed.&lt;/p&gt;    
+            &lt;/Details&gt;
+            &lt;footer&gt;
+                &lt;p&gt;&copy; 2024 My Website&lt;/p&gt;
+            &lt;/footer&gt;
+
+        &lt;/body&gt;
+        &lt;/html&gt;
+    </pre>
+    <p>By using semantic HTML elements, we can create a well-structured and meaningful webpage that is accessible, SEO-friendly, and easy to maintain.</p>
+<h3>Example</h3>
+<header>
+    <h1>My Website</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <article>
+        <h2>Article Title</h2>
+        <p>This is the main content of the article.</p>
+    </article>
+
+    <aside>
+        <p>This is some additional information related to the article.</p>
+    </aside>
+
+    <section>
+        <h2>Section Title</h2>
+        <p>This section contains related content.</p>
+    </section>
+
+    <details>
+        <summary>More Information</summary>
+        <p>This is additional information that can be expanded or collapsed.</p>
+    </details>
+</main> 
+
+<footer>
+    <p>&copy; 2024 My Website</p>   
+    </footer>
+
+<figure>
+    <img src="image.jpg" alt="Description of the image">
+    <figcaption>This is a caption for the image.</figcaption>   
+<mark>This is marked text.</mark>
+</body>
+</html>
