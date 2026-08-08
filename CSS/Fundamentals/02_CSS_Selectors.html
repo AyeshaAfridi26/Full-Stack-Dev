@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+
+ <style>
+        /* Element Selector */
+        p {
+            color: blue;
+        }
+
+        /* Class Selector */
+        .my-class {
+            font-size: 16px;
+        }
+
+        /* ID Selector */
+        #my-id {
+            background-color: yellow;
+        }
+
+        /* Group Selector */
+        h1, h2, h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Descendant Selector */
+        div p {
+            color: red;
+        }
+
+        /* Child Selector */
+        ul > li {
+            list-style-type: none;
+        }
+
+        /* Pseudo-class Selector */
+        a:hover {
+            text-decoration: underline;
+            background-color: rgb(91, 88, 88);
+        }
+
+        /* Pseudo-element Selector */
+        p::first-letter {
+            font-size: 24px;
+        }
+
+        h2~ p {
+            color: orange;
+        }
+        h1+ p {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CSS Selectors</h1>
+    <p>CSS Selectors are patterns used in CSS to select and target HTML elements so that styles can be applied to them. </p>
+    <h2>Types of CSS Selectors:</h2>
+    <ul>
+        <li><strong>Universal Selector:</strong> Selects all elements on the page. Example: <code>* { margin: 0; padding: 0; }</code></li>
+        <li><strong>Element Selector:</strong> Selects elements based on their tag name. Example: <code>p { color: blue; }</code></li>
+        <li><strong>Class Selector:</strong> Selects elements with a specific class attribute. Example: <code>.my-class { font-size: 16px; }</code></li>
+        <li><strong>ID Selector:</strong> Selects a single element with a specific ID attribute. Example: <code>#my-id { background-color: yellow; }</code></li>
+        <li><strong>Group Selector:</strong> Selects multiple elements and applies the same styles to them. Example: <code>h1, h2, h3 { margin-bottom: 10px; }</code></li>
+        <li><strong>Descendant Selector:</strong> Selects elements that are descendants of a specified element. Example: <code>div p { color: red; }</code></li>
+        <li><strong>Child Selector:</strong> Selects elements that are direct children of a specified element. Example: <code>ul > li { list-style-type: none; }</code></li>
+        <li><strong>Pseudo-class Selector:</strong> Selects elements based on their state or position. Example: <code>a:hover { text-decoration: underline; }</code></li>
+        <li><strong>Pseudo-element Selector:</strong> Selects and styles specific parts of an element. Example: <code>p::first-letter { font-size: 24px; }</code></li>
+        <li><strong>Combinator Selectors:</strong> Selects elements based on their relationship to other elements. Examples include adjacent sibling selector (<code>h1 + p</code>) and general sibling selector (<code>h1 ~ p</code>).</li>
+    </ul>
+    <h2>Example of CSS Selectors</h2>
+   <div class="my-class">
+        <p>This is a paragraph with a class.</p>
+        <div>
+            <p>This is a paragraph inside a div.</p>
+        </div>
+    </div>
+    <div id="my-id">
+        <p>This is a paragraph with an ID.</p>
+    </div>
+    <a href="#">Hover over this link to see the pseudo-class effect.</a>
+
+    <h2>Combinator Selectors example</h2>
+    <h1>Heading 1</h1>
+    <p>This paragraph is a sibling of the heading 1.</p>
+    <p>This is another paragraph.</p>
+    <div><h2>Heading 2</h2>
+    <p>This paragraph is a sibling of the heading 2.</p>
+        </div>
+</body>
+</html>
