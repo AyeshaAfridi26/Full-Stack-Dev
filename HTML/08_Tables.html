@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+<body>
+    <h1>HTML Tables</h1>
+    <p>HTML tables are used to display data in a structured format.</p>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+            <td>New York</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>30</td>
+            <td>Los Angeles</td>
+        </tr>
+    </table>
+
+<h2> Table Tags</h2>
+<p>Here are the main HTML table tags:</p>
+<ul>
+    <li><strong>&lt;table&gt;</strong> - Defines an HTML table</li>
+    <li><strong>&lt;tr&gt;</strong> - Defines a table row</li>
+    <li><strong>&lt;th&gt;</strong> - Defines a table header</li>
+    <li><strong>&lt;td&gt;</strong> - Defines a table cell</li>
+    <li><strong>&lt;caption&gt;</strong> - Defines a table caption</li>
+    <li><strong>&lt;thead&gt;</strong> - Groups the header content in a table</li>
+    <li><strong>&lt;tbody&gt;</strong> - Groups the body content in a table</li>
+    <li><strong>&lt;tfoot&gt;</strong> - Groups the footer content in a table</li>   
+    <li><strong>&lt;col&gt;</strong> - Specifies column properties for each column within a &lt;colgroup&gt; element</li>    
+    <li><strong>&lt;colgroup&gt;</strong> - Specifies a group of one or more columns in a table for formatting</li>
+    <li><strong>&lt;row&gt;</strong> - Defines a row in a table</li>
+
+</ul>
+
+ <h2>Table Attributes</h2>
+    <p>HTML tables can have various attributes to control their appearance and behavior. Some common attributes include:</p>
+    <ul>
+        <li><strong>border</strong> - Specifies the width of the border around the table</li>
+        <li><strong>cellpadding</strong> - Specifies the space between the cell content and its border</li>
+        <li><strong>cellspacing</strong> - Specifies the space between cells</li>
+        <li><strong>width</strong> - Specifies the width of the table</li>
+        <li><strong>height</strong> - Specifies the height of the table</li>
+        <li><strong>align</strong> - Specifies the alignment of the table (left, center, right)</li>
+        <li><strong>bgcolor</strong> - Specifies the background color of the table</li>
+        <li><strong>abbr</strong> - Specifies an abbreviation for the table</li>
+        <li><strong>colspan</strong> - Specifies the number of columns a cell should span</li>
+        <li><strong>rowspan</strong> - Specifies the number of rows a cell should span</li>
+    </ul>
+
+    <h2>Types of Cells</h2>
+    <p>In HTML tables, there are two main types of cells:</p>
+    <ul>
+        <li><strong>Header Cells</strong> - Defined using the &lt;th&gt; tag, these cells are typically bold and centered by default.</li>
+        <li><strong>Standard/Data Cells</strong> - Defined using the &lt;td&gt; tag, these cells contain the actual data of the table.</li>
+    </ul>
+
+    <h2>Example</h2>
+    <p>Here is an example of a simple HTML table:</p>
+    <table border="1">
+        <caption>Sample Table</caption>
+        <thead>
+            <tr>
+                <th >Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apples</td>
+                <td >$1.00</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Bananas</td>
+                <td>$0.50</td>
+                <td>20</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">Total</td>
+                <td>30</td>
+            </tr>
+        </tfoot>
+    
+
+</body>
+</html>
