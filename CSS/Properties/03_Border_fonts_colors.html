@@ -4,10 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Border Fonts Colors</title>
+<style>
+    .hover-example{
+        background: linear-gradient(135deg,green 0%, yellow 35%, black 100%);
+        color: wheat;
+        padding: 20px;
+        text-align: pointer;
+        cursor: pointer;
+        margin: 20px;
+    }
+
+    .hover-example:hover{
+        background: greenyellow;
+        color: black;
+    }
+</style>
+
 </head>
-<body>
+<body style="background: #020024; background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%); color: aliceblue;">
+    <h1>Border</h1>
     <div style="border: 3px solid red; text-align: center;">
         <p>hey</p>
     </div>
+
+    <div style="border: 3px dashed green; text-align: center;">
+        <p>dashed broder</p>
+    </div>
+
+    <div style="border: 3px dotted black;">
+        <p>dotted</p>
+    </div>
+    <div style="border: 3px solid brown; border-radius: 3px;">
+        <p>border radius</p>
+    </div>
+
+    <div class="border-color">
+        <div class="top-color" style=" border: 3px solid;border-top-color: pink;margin-top: 10px;"><p>Border Top color </p></div>
+        <div class="bottom-color" style=" border: 3px solid;border-bottom-color: azure;margin-top:10px"><p>Border bottom color</p></div>
+        <div class="left-color" style="border: 3px solid;border-left-color: rgb(186, 186, 50);margin-top: 10px;"><p>Border left color</p></div>
+        <div class="right-color" style="border: 3px solid;border-right-color: rgb(20, 203, 203);margin-top: 10px;"><p>Border right color</p></div>
+        
+        <div class="circle" style="border: 4px solid;border-radius: 100%; width:20px;height:20px;border-right-color: rgb(20, 203, 203);margin-top: 10px;"><p></p></div>
+         
+        <div class="groove" style = "border: 14px groove purple;margin-top: 10px; "></div>
+        <div class="ridge" style = "border: 14px ridge purple; margin-top: 10px;"></div>
+
+    </div>
+
+<!-- --------------------------- -->
+<h1>Font</h1>    
+<p>The font-family property defines which font(s) should be used for text. </p>
+
+<p>body {
+    font-family: "Arial", sans-serif;
+} </p>
+<p style="font-family: Arial, Helvetica, sans-serif;">In this example, the browser will first try to display the text in Arial. </p>
+<p style="font-size: 20px;">font size</p>
+<p style="font-weight: 400;">font weigght</p>
+<p style="font-style: italic;">font style</p>
+<p style="line-height: 1.5;">The line-height property defines the space between lines of text. Increasing line height improves readability, especially for long paragraphs</p>
+<h2>Custom fonts</h2>
+<p> You can load them using web fonts. The most popular method for using custom fonts is through Google Fonts, or by hosting fonts on your own server.</p>
+<p>&lt;head &gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 style="font-family: 'Roboto', sans-serif;"&gt;Hello, World!&lt;/h1&gt;
+&lt;/body&gt;&lt;/p&gt;
+
+<p style="letter-spacing: 1.5px;"> space between characters</p>
+<p style="text-transform: capitalize;">this is capatalize the text</p>
+<!-- ------------------------ -->
+<h1>Color</h1>
+
+<div style="background-color: bisque;">background color</div>
+
+<div style="color: aquamarine;"><p>this is for text color</p></div>
+
+<div style="border: 3px solid; border-color: antiquewhite;">Border color property</div>
+
+<div class="hover-example">this is for hover example</div>
+<div class="shadows" style="color:bisque;margin:20px; text-shadow: 12px 12px 15px rgba(209, 184, 184, 0.808);">this is for  text shadows</div>
+
+<div class="boxshadows" style="color:bisque;margin:20px; box-shadow: 12px 12px 15px rgba(71, 68, 68, 0.808);">this is for  box shadows</div>
+
+
 </body>
 </html
