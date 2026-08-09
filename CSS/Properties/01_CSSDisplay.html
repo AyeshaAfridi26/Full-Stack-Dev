@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<style>
+		.grid-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 10px;
+		}
+		.grid-item {
+			background-color: #f0f0f0;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+    <title>CSS Display Properties</title>
+</head>
+<body>
+    <h1>CSS Display Properties</h1>
+    <p>The CSS display property specifies how an element should be displayed.</p>
+    <p>Common CSS display properties are as follows:</p>
+    <ul>
+        <li><strong>block:</strong> Displays the element as a block-level element.</li>
+        <li><strong>inline:</strong> Displays the element as an inline element.</li>
+        <li><strong>inline-block:</strong> Displays the element as an inline-level block container.</li>
+        <li><strong>none:</strong> Hides the element and removes it from the document flow.</li>
+    </ul>
+
+   <h2>Block Display</h2> 
+   <p>This is the default property for <div> elements. It places them vertically, one after another. You can adjust the height and width of a block-level element.</p>
+         <div class="block-example" style="display: block; width: 200px; height: 100px; background-color: lightblue; margin-bottom: 10px;">
+        <p>Block 1</p> </div>
+        <div class="block-example" style="display: block; width: 200px; height: 100px; background-color: lightgreen; margin-bottom: 10px;">
+        <p>Block 2</p></div>
+        <div class="block-example" style="display: block; width: 200px; height: 100px; background-color: lightcoral; margin-bottom: 10px;">
+        <p>Block 3</p> </div>
+<!-- -------------------------------------- -->
+    <h2>Inline Display</h2>
+    <p>Inline elements do not start on a new line and only take up as much width as necessary. You cannot set the height and width of an inline element.</p>
+    <span class="inline-example" style="display: inline; background-color: lightblue; padding: 5px; margin-right: 5px;">Inline 1</span>
+    <span class="inline-example" style="display: inline; background-color: lightgreen; padding: 5px; margin-right:5px;">Inline 2</span>
+    <span class="inline-example" style="display: inline; background-color: aqua; padding: 5px; margin-right: 5px;">Inline 3</span>    
+    <span class="inline-example" style="display: inline; background-color: rgb(0, 39, 39); padding: 5px; margin-right: 5px;height: 50px;width: 50px;">Inline 4</span>   
+<!-- ----------------------------------- -->
+<h2>Inline-block</h2>
+<p>this value allows elements to flow inline while still having block-level properties. It’s useful for creating responsive layouts.</p>
+<div class="inline-block" style="background-color: beige; display: inline-block; padding: 5px; margin: 5px; height: 50px; width: 50px;">Inline-block 1</div>
+<div class="inline-block" style="background-color: rgb(98, 172, 173); display: inline-block; padding: 5px; margin: 5px; height: 50px; width:50px;">Inline-block 2</div>
+<div class="inline-block" style="background-color: rgb(3, 26, 30); display: inline-block; padding: 5px; margin: 5px; height: 50px; width:50px;">Inline-block 3</div>
+<div class="inline-block" style="background-color: rgb(184, 93, 129); display: inline-block; padding: 5px; margin: 5px; height:50px; width:50px;">Inline-block 4</div>
+
+<!-- ---------------------------------- -->
+
+<h2>None</h2>
+
+<div class="none" style="display: none; background-color: black; height: 100px; width: 100px;">This is none display, wont show in browser</div>
+
+<!-- ------------------------ -->
+<h2>Flex</h2>
+<p>The Flexible Box Layout module introduces a one-dimensional layout system that handles space distribution and item alignment effectively</p>
+<h3>Flexbox axes: </h3>
+<h4>Main Axes</h4>
+<p>horizontal in row(flex-direction = row)/ vertical in column(flex-direction = column)</p>
+<h5>Cross Axes</h5>
+<p>perpendicular to main axis</p>
+
+<h3>Flex Direction Properties</h3>
+<ul>
+    <li>Left to Right: flex-direction: row;</li>
+    <li>Right to Left: flex-direction: row-reverse;</li>
+    <li>Top to Bottom: flex-direction: column;</li>
+    <li>Bottom to Top: flex-direction: column-reverse;</li>
+</ul>
+
+<h3>Align and Justify</h3>
+<h4>Justify content</h4>
+<p>justify-content: Aligns items along the main axis (e.g., flex-start, flex-end, center, space-between, space-around).
+<h4>Align Items</h4>
+<p>align-items: Aligns items along the cross axis (e.g., stretch, center, flex-start, flex-end).</p>
+<h4>Align Content</h4>
+<p>align-content: Aligns rows within a flex container when there is extra space on the cross axis.</p>
+<div class="flex-container" style="display:flex;  flex-wrap: wrap; flex-direction:column; justify-content: center; align-content: end; background-color: black; padding: 5px; margin: 5px; height: 100vh;">
+    <div class="flex-item" style="background-color: antiquewhite; height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 1</div>
+    <div class="flex-item" style="background-color: rgb(236, 138, 10); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 2</div>
+    <div class="flex-item" style="background-color: rgb(88, 211, 205); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 3</div>
+    <div class="flex-item" style="background-color: rgb(242, 87, 66); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 4</div>
+    <div class="flex-item" style="background-color: rgb(164, 19, 96); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 5</div>
+    <!-- <div class="flex-item" style="background-color: rgb(6, 77, 17); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 6</div> -->
+</div>
+
+<div class="flex-container" style="display:flex;  flex-wrap: wrap;align-content:center;justify-content:center;flex-direction:row; height: 200px; width:auto; background-color: rgb(171, 7, 7); padding: 5px; margin: 5px;">
+    <div class="flex-item" style="background-color: antiquewhite; height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 1</div>
+    <div class="flex-item" style="background-color: rgb(236, 138, 10); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 2</div>
+    <div class="flex-item" style="background-color: rgb(88, 211, 205); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 3</div>
+    <div class="flex-item" style="background-color: rgb(242, 87, 66); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 4</div>
+    <div class="flex-item" style="background-color: rgb(164, 19, 96); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 5</div>
+    <div class="flex-item" style="background-color: rgb(6, 77, 17); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 6</div>
+</div>
+
+<div class="flex-container" style="display:flex;  flex-wrap: wrap;align-content:center;justify-content:space-between;flex-direction:row; height: 200px; width:auto; background-color: rgb(7, 11, 56); padding: 5px; margin: 5px;">
+    <div class="flex-item" style="background-color: antiquewhite; height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 1</div>
+    <div class="flex-item" style="background-color: rgb(236, 138, 10); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 2</div>
+    <div class="flex-item" style="background-color: rgb(88, 211, 205); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 3</div>
+    <!-- <div class="flex-item" style="background-color: rgb(242, 87, 66); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 4</div> -->
+    <!-- <div class="flex-item" style="background-color: rgb(164, 19, 96); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 5</div> -->
+    <div class="flex-item" style="background-color: rgb(6, 77, 17); height: 100px; width: 100px; padding: 5px; margin: 5px;">Item 6</div>
+</div>
+<!-- ---------------------------- -->
+<h2>Grid</h2>
+<p>The CSS Grid Layout Module is a powerful two-dimensional layout system that enables the creation of complex and responsive designs. </p>
+<h3>Grid Properties</h3>
+<h4>column-gap</h4>
+<p>Defines the amount of space between columns in a multi-column layout, often used with column-count in CSS Grid.</p>
+<h4>gap</h4>
+<p>Specifies the spacing (also called gutter) between rows and columns in CSS Grid and Flexbox layouts.</p>
+<h4>grid</h4>
+<p>A grid-based layout system in CSS that provides rows and columns, simplifying the design without using floats or positioning.</p>
+
+<h4>grid-area</h4>
+<p>Defines the size and location of a grid item within a CSS grid layout by specifying the start and end lines.</p>
+<h4>grid-auto-columns</h4>
+<p>Sets the size of columns that are automatically generated in a CSS Grid layout when more content is added.</p>
+
+<h4>grid-auto-flow</h4>
+<p>It specifies exactly how auto-placed items get flow into the grid.</p>
+
+<h4>grid-auto-rows</h4>
+<p>It is used to specify the size for the rows of implicitly generated grid containers.</p>
+
+<h4>grid-column</h4>
+<p>It describes the number of properties that allow to design of grid structures and control the placement of grid items using CSS.</p>
+
+<h4></h4>
+<div class="grid-container">
+		<div class="grid-item">Column 1</div>
+		<div class="grid-item">Column 2</div>
+		<div class="grid-item">Column 3</div>
+	</div>
+
+</body>
+</html>
