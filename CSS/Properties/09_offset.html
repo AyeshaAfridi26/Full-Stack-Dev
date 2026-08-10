@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offset Values</title>
+    <style>
+/* * ====================================================================
+   POSITION OFFSETS (top, right, bottom, left)
+   ====================================================================
+
+   Once an element has position: relative, absolute, fixed, or sticky,
+   you use these four properties to move it:
+
+     top    → distance from the TOP edge of the containing block
+     right  → distance from the RIGHT edge
+     bottom → distance from the BOTTOM edge
+     left   → distance from the LEFT edge
+
+   POSITIVE values push INWARD (away from that edge):
+     top: 20px    → 20px down from the top
+     left: 20px   → 20px right from the left
+
+   NEGATIVE values pull OUTWARD (beyond that edge):
+     top: -20px   → 20px above the top
+     left: -20px  → 20px to the left of the left edge
+
+   You generally use top+left OR bottom+right — not all four.
+   Using opposite pairs (top + bottom) on fixed/absolute sizes the element.
+
+   PERCENTAGE values are relative to the containing block's size:
+     top: 50%     → half the height of the containing block
+==================================================================== */ */
+
+.offset-playground {
+  position: relative;
+  background: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  height: 200px;
+  margin: 12px 0;
+}
+
+.offset-origin {
+  display: inline-block;
+  background: #ddd;
+  border: 2px dashed #999;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #888;
+}
+
+.offset-top {
+  position: relative;
+  top: 20px;           /* 20px DOWN from where it would normally be */
+  display: inline-block;
+  background: #3498db;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+.offset-left {
+  position: relative;
+  left: 30px;          /* 30px RIGHT from its normal position */
+  display: inline-block;
+  background: #2ecc71;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+.offset-negative {
+  position: absolute;
+  top: -15px;          /* 15px ABOVE the top of the playground */
+  right: -15px;        /* 15px OUTSIDE the right edge */
+  background: #e74c3c;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.offset-top span,
+.offset-left span,
+.offset-negative span {
+  font-size: 11px;
+  opacity: 0.85;
+  display: block;
+  margin-top: 3px;
+}
+
+/* Notification badge examples */
+.badge-examples {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.badge-wrap {
+  position: relative; /* anchor for absolute badge */
+  display: inline-block;
+}
+
+.badge-icon {
+  font-size: 36px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-count {
+  position: absolute; /* removed from flow */
+  top: -6px;          /* poke above the icon */
+  right: -8px;        /* poke to the right of the icon */
+  background: #e74c3c;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+}
+
+.badge-red   { background: #e74c3c; }
+.badge-green { background: #27ae60; }
+
+/* Image overlay */
+.img-overlay-wrap {
+  position: relative; /* anchor for absolute caption */
+  border-radius: 10px;
+  overflow: hidden;   /* clip the caption to the image corners */
+  margin: 12px 0;
+}
+
+.overlay-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay-caption {
+  position: absolute;  /* removed from flow */
+  bottom: 0;           /* pinned to the bottom */
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  color: white;
+  padding: 30px 20px 16px;
+}
+
+.overlay-caption h4 { color: white; margin-bottom: 4px; font-size: 16px; }
+.overlay-caption p  { color: rgba(255,255,255,0.85); font-size: 13px; margin: 0; }
+
+
+/* ====================================================================
+ Z-INDEX
+   ====================================================================
+
+   z-index controls the STACKING ORDER of positioned elements.
+   Think of it as the Z axis — depth from the screen.
+
+   Higher z-index = closer to you (in front / on top)
+   Lower z-index  = further from you (behind)
+
+   RULES:
+   1. z-index ONLY works on positioned elements:
+      position: relative, absolute, fixed, or sticky.
+      It has NO EFFECT on position: static (the default).
+
+   2. z-index values can be any integer:
+      Positive: 1, 2, 100, 9999
+      Zero:     0
+      Negative: -1 (appears behind the normal document flow!)
+
+   3. Elements with the same z-index stack in source order —
+      the one written LATER in HTML appears on top.
+
+   4. Stacking contexts — when an element creates its own
+      stacking context (e.g. with opacity < 1, transform, etc.),
+      its children's z-index is only compared within that context.
+      This is an advanced concept — for now just remember:
+      z-index works as expected when elements share the same parent.
+
+   COMMON Z-INDEX CONVENTIONS in real projects:
+     Base content:    1–10
+     Dropdowns:       100–200
+     Modals overlay:  500–600
+     Modal box:       600–700
+     Tooltips:        800–900
+     Fixed headers:   1000
+     Notifications:   2000+
+==================================================================== */
+
+.zindex-demo {
+  position: relative;
+  height: 120px;
+  background: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.z-box {
+  position: absolute; /* must be positioned for z-index to work */
+  width: 160px;
+  height: 80px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+.z-box span {
+  font-size: 11px;
+  font-weight: normal;
+  opacity: 0.85;
+  margin-top: 3px;
+}
+
+/* Higher z-index = on top */
+.z-box-1 { z-index: 1; background: #e74c3c; top: 20px; left: 20px; }
+.z-box-2 { z-index: 2; background: #3498db; top: 30px; left: 80px; }
+.z-box-3 { z-index: 3; background: #2ecc71; top: 40px; left: 140px; }
+
+/* Reversed — higher number goes behind */
+.z-rev-1 { z-index: 3; background: #e74c3c; top: 20px; left: 20px; }
+.z-rev-2 { z-index: 2; background: #3498db; top: 30px; left: 80px; }
+.z-rev-3 { z-index: 1; background: #2ecc71; top: 40px; left: 140px; }
+
+/* z-index works vs fails */
+.zindex-warning {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.z-works, .z-fails {
+  flex: 1;
+  min-width: 200px;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.z-works {
+  background: #eafaf1;
+  border: 2px solid #2ecc71;
+  color: #145a32;
+}
+
+.z-fails {
+  background: #fdf0f0;
+  border: 2px solid #e74c3c;
+  color: #7b241c;
+}
+
+.z-works span, .z-fails span {
+  font-size: 12px;
+  display: block;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+
+    </style>
+
+</head>
+<body>
+    
+      <section class="section" id="offsets">
+        <h2> Position Offsets — top, right, bottom, left</h2>
+
+        <p>
+          Once you set <code>position</code> to anything other than
+          <code>static</code>, you can use four offset properties to
+          move the element:
+          <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>.
+        </p>
+
+        <!-- Offset directions -->
+        <h3>How Offsets Work</h3>
+        <div class="offset-playground">
+          <div class="offset-origin">Normal position</div>
+
+          <div class="offset-top">
+            top: 20px<br>
+            <span>(moves DOWN 20px from top edge)</span>
+          </div>
+
+          <div class="offset-left">
+            left: 30px<br>
+            <span>(moves RIGHT 30px from left edge)</span>
+          </div>
+
+          <div class="offset-negative">
+            top: -15px<br>
+            left: -15px<br>
+            <span>(negative = moves UP and LEFT)</span>
+          </div>
+        </div>
+
+        <!-- Practical: notification badge -->
+        <h3>Real-world Example — Notification Badge</h3>
+        <p style="font-size:14px; color:#666;">
+          A classic use of <code>position: absolute</code> + offsets:
+          a notification count pinned to the corner of an icon.
+        </p>
+        <div class="badge-examples">
+
+          <div class="badge-wrap">
+            <div class="badge-icon">🔔</div>
+            <span class="badge-count">3</span>
+          </div>
+
+          <div class="badge-wrap">
+            <div class="badge-icon">✉️</div>
+            <span class="badge-count badge-red">12</span>
+          </div>
+
+          <div class="badge-wrap">
+            <div class="badge-icon">🛒</div>
+            <span class="badge-count badge-green">5</span>
+          </div>
+
+        </div>
+
+        <!-- Practical: image caption overlay -->
+        <h3>Real-world Example — Image Caption Overlay</h3>
+        <div class="img-overlay-wrap">
+          <img
+            src="https://picsum.photos/seed/overlay/800/300"
+            alt="A scenic landscape with caption overlay demo"
+            class="overlay-img"
+          >
+          <div class="overlay-caption">
+            <h4>Mountain Landscape</h4>
+            <p>Caption overlaid using position: absolute on bottom of image</p>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ============================================================
+        SECTION 4 — Z-INDEX
+        See style4.css Section 4 for full explanation.
+      ============================================================ -->
+      <section class="section" id="zindex">
+        <h2> Z-Index — What Appears on Top</h2>
+
+        <p>
+          When elements overlap, <code>z-index</code> decides which one
+          appears on top. Higher z-index = closer to you (in front).
+          Lower z-index = further from you (behind).
+        </p>
+
+        <p style="font-size:14px; color:#666;">
+          Think of z-index like layers in Photoshop — or a stack of cards.
+          The card on top has the highest z-index.
+        </p>
+
+        <!-- Basic z-index overlap demo -->
+        <h3>Basic Overlap Demo</h3>
+        <div class="zindex-demo">
+          <div class="z-box z-box-1">z-index: 1<br><span>behind</span></div>
+          <div class="z-box z-box-2">z-index: 2<br><span>middle</span></div>
+          <div class="z-box z-box-3">z-index: 3<br><span>on top</span></div>
+        </div>
+
+        <!-- Reversed z-index demo -->
+        <h3>Reversed — Lower Number Wins (z-index: 1 on top)</h3>
+        <div class="zindex-demo">
+          <div class="z-box z-rev-1">z-index: 3<br><span>behind</span></div>
+          <div class="z-box z-rev-2">z-index: 2<br><span>middle</span></div>
+          <div class="z-box z-rev-3">z-index: 1<br><span>on top</span></div>
+        </div>
+
+        <!-- Z-index only works on positioned elements -->
+        <h3> Important Rule</h3>
+        <div class="zindex-warning">
+          <div class="z-works">
+             <code>position: relative</code><br>
+            z-index: 10<br>
+            <span>Works! z-index only works on positioned elements
+            (relative, absolute, fixed, sticky)</span>
+          </div>
+          <div class="z-fails">
+             <code>position: static</code><br>
+            z-index: 10<br>
+            <span>Does nothing! z-index is ignored on
+            position: static (the default)</span>
+          </div>
+        </div>
+
+        <!-- Practical: modal overlay -->
+        <h3>Real-world Example — Modal Overlay</h3>
+        <p style="font-size:14px; color:#666;">
+          Modals use high z-index values to appear above everything else.
+          Click the button to see a z-index modal demo:
+        </p>
+        <button class="modal-trigger" onclick="document.getElementById('demo-modal').style.display='flex'">
+          Open Modal Demo
+        </button>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="demo-modal">
+          <div class="modal-box">
+            <h4>I am a Modal! </h4>
+            <p>
+              This modal has a very high z-index so it appears above
+              everything else on the page. The dark overlay behind me
+              has a slightly lower z-index — still above the page content,
+              but below the modal box.
+            </p>
+            <button class="modal-close"
+              onclick="document.getElementById('demo-modal').style.display='none'">
+              Close Modal
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+</body>
+</html>
