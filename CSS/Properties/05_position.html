@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Position</title>
+    </head>
+    <body>
+        <h1>CSS Positions</h1> 
+        <p>CSS positioning is used to control the placement of elements on a web page. </p>
+        
+        
+        <h2>Fixed Positioning</h2>
+        <p>Fixed positioning removes the element from the flow and positions it relative to the viewport. It remains in place even when the page scrolls. </p>
+        
+        <div style="border: 3px solid; margin: 10px; padding: 10px; background-color: aquamarine;">
+            <div style="border: 3px solid red; margin: 10px; padding: 10px; background-color: antiquewhite; position: fixed; left: 10px;">this will be placed relative to the veiwport    </div>
+        </div>
+
+
+        <h2>Static Positioning</h2>
+        <p>Static is the default position of an element. It does not accept properties like top, left, right, or bottom. </p>
+<p>For Example</p>
+<div style="border: 3px solid; margin: 10px; padding: 10px; background-color: aquamarine;">
+    <div style="border: 3px solid red; margin: 10px; padding: 10px; background-color: antiquewhite; position: static; left: 100px;">off set valuues like right left top bottom dont work here</div>
+</div>
+
+<h2>Relative Positioning</h2>
+<p>Relative positioning places an element relative to its normal position. You can move it using top, left, right, or bottom. </p>
+<div style="border: 3px solid; margin: 10px; padding: 10px; background-color: aquamarine;">
+    <div style="border: 3px solid red; margin: 10px; padding: 10px; background-color: antiquewhite; position: relative; left: 100px;">off set valuues like right left top bottom work here</div>
+</div>
+
+
+<h2>Absolute Positioning</h2>
+<p>Absolute positioning removes the element from the document flow and places it relative to the nearest ancestor with a positioning context (relative, absolute, or fixed). </p>
+
+<div style="border: 3px solid; margin: 10px; padding: 10px; background-color: aquamarine; position: relative;">
+    <div style="border: 3px solid red; margin: 0px; padding: 10px; background-color: antiquewhite; position: absolute; left: 10px;">off set valuues like right left top bottom work relative to nearest relative fixed or absolute parent</div>
+</div>
+<!-- relative does not make absolute children contribute to the parent’s height. The absolute child is removed from normal document flow, so the parent only contains its own padding and border and therefore looks collapsed. -->
+
+<h2>Sticky Positioning</h2>
+<p>Sticky positioning switches between relative and fixed based on the scroll position. </p>
+
+<div style="border: 3px solid; margin: 10px; padding: 10px; background-color: aquamarine; position: relative; height: auto;">
+    <div style="border: 3px solid red; margin: 0px; padding: 10px; background-color: antiquewhite; position: sticky; top: 10px;">Lorem ipsum dolor, sit amet  neque sapiente nisi corrupti sed, explicabo ullam tempora! Corporis sed blanditiis deserunt, nesciunt error quam nemo voluptate praesentium iste in repellat nostrum quisquam commodi perspiciatis, incidunt facilis.</div>
+    <div style="border: 3px solid red; margin: 0px; padding: 10px; background-color: antiquewhite; top: 10px;">Lorem ipsum doloriendis enim veniam Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatum ad iusto iste et dolore esse, consequuntur provident possimus ipsa expedita quidem reiciendis consectetur, obcaecati, reprehenderit quas doloribus ullam rerum voluptatibus voluptates aut. Veritatis, voluptate! Vel dolores sed excepturi obcaecati delectus reprehenderit, nihil, nulla ipsam atque, veritatis natus soluta temporibus aliquam unde. Aperiam id asperiores tempora praesentium dicta, labore reprehenderit assumenda? Saepe ducimus quaerat aut. Nisi dolore consequuntur corporis odio blanditiis, alias perferendis voluptate deleniti ut facilis in, natus voluptatibus quasi, ad officia molestiae nam? Voluptatibus doloremque aut ut repudiandae laborum id incidunt tenetur saepe explicabo laboriosam, nemo maxime harum?Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum eius nisi ab, a debitis, repellat perspiciatis, aliquam eum saepe recusandae voluptates? Molestias neque corrupti perferendis harum beatae. Distinctio voluptates odit beatae dolorum similique quasi tempore saepe, at atque debitis amet vel, fugit error ullam illum nesciunt placeat, accusantium eius fuga quam ab sint totam qui! Reiciendis maiores sunt corrupti adipisci esse, distinctio, placeat ducimus voluptate dolorem ad eaque dolore iusto aliquam veritatis! Totam optio odit, assumenda eaque a eligendi, illo maxime deleniti qui fugiat architecto numquam est harum. Suscipit ipsum perferendis inventore molestias maxime iusto itaque beatae odio velit sunt.lorem1000 Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias accusantium quod molestiae autem dignissimos earum excepturi ex nam odit placeat vitae consectetur nulla doloremque culpa deserunt esse quam, qui voluptas, architecto, eos ab? Sed exercitationem dicta corporis iure voluptas vel a, in rem, nesciunt explicabo non sit aperiam quam rerum minima dignissimos! Aliquam quos saepe ea repellendus eaque laboriosam esse quod veniam enim, dolores sed! Eveniet mollitia nostrum obcaecati, ipsum quibusdam eum delectus est quidem eaque! Dolor, quos. Nobis consequuntur doloremque fugiat eveniet cum sint itaque reprehenderit commodi est quod, blanditiis corporis numquam officiis, odit ad nam, temporibus quasi ex! Accusamus molestias hic, delectus, expedita ad magni aspernatur eveniet id quos ex, libero voluptatibus totam laboriosam atque earum dolorum. Esse amet iusto harum, ipsam, nostrum qui quaerat blanditiis voluptatibus cumque consequuntur itaque aspernatur iure maxime corporis dolores perferendis corrupti dolor. Quasi, nihil amet ut iure eaque pariatur excepturi eveniet, odio corrupti enim beatae rem aspernatur! Dolore molestiae laboriosam dolor architecto nemo, eum sed corporis nisi numquam sint ut consequuntur officiis nam mollitia praesentium magni voluptas quo ab illum, ipsum modi voluptatem fugiat reprehenderit? Enim officia vitae voluptates obcaecati esse dolorum perferendis necessitatibus error earum autem ut placeat praesentium rerum soluta voluptas blanditiis, harum dolore quam sed, dicta amet ducimus. Illum nihil culpa ut neque ab quia doloribus. Beatae voluptatem nisi provident dolorum aliquid. Quia, dicta! Harum exercitationem laboriosam quis, architecto tenetur dolores natus provident vitae quos tempora praesentium voluptatum sequi commodi pariatur, nam autem maxime eveniet. Magnam ullam corrupti commodi aspernatur! Ut doloremque, commodi rem doloribus, quos vero quibusdam recusandae sit, quis aspernatur soluta omnis debitis a voluptas aliquid! Ut possimus amet temporibus commodi, totam est culpa debitis non ea a! Modi magni commodi adipisci sed illum qui necessitatibus praesentium, earum, consequuntur facere eos unde vitae expedita et reprehenderit maiores asperiores omnis odit, placeat voluptas excepturi quo consectetur neque similique. Velit a optio, nostrum numquam aspernatur praesentium debitis. Praesentium fugiat laudantium, maxime sapiente dicta eum corporis explicabo aliquid tempora odit voluptatibus optio rem perferendis adipisci voluptate velit animi nemo voluptates nobis nam est tempore? Voluptates voluptatum iure minima nisi ut rem, est vitae, animi ipsam nulla rerum tempora reiciendis debitis accusantium eveniet alias vel commodi doloremque aperiam deleniti cupiditate? Similique, ratione harum? Iusto nam sint nisi illum enim officia deserunt, laudantium exercitationem dicta ad rem at assumenda sequi voluptatem quae, in voluptatum vitae tempore nesciunt. Fuga fugit incidunt totam ipsam perferendis dolore. Nulla, fugiat vitae corporis cupiditate praesentium omnis quidem facere ipsam quisquam sapiente quae odio velit voluptatum quas beatae enim distinctio. Tempora possimus minus nisi officia tenetur repellat consequatur mollitia id sunt, modi unde autem magnam eveniet temporibus ipsa quia quod. Autem nihil ducimus consequuntur eius impedit est at fugiat magni, nam quaerat odit maiores ex aut! Pariatur, illum quis dicta, et ratione reprehenderit vel error accusamus blanditiis maxime ad voluptatibus. Explicabo eius enim minus. Ex recusandae eos qui fugiat quasi architecto quae ut nihil aspernatur porro, deleniti nobis! Aperiam quas autem pariatur quae, voluptatum expedita perferendis consectetur dolorum.animi similique qui necessitatibus sapiente ad neque repellendus vel! Sint quasi natus repudiandae autem fugiat harum, dolores vero a fugit aliquid ut dolor est quod quo laboriosam tempore nam. Mollitia, ducimus nobis. Ut quod rem obcaecati magnam. Accusamus quibusdam ratione provident dolorem dignissimos nobis reiciendis eligendi, rerum optio aut ipsam repudiandae enim ut error? Assumenda eum quas incidunt sint doloribus adipisci aliquam. Quod temporibus tempora distinctio voluptatibus, iste doloremque quae numquam natus earum! Architecto impedit et maxime quod nulla expedita iusto aspernatur libero repudiandae, alias, facilis aperiam repellendus dolores numquam voluptates vitae neque sapiente nisi corrupti sed, explicabo ullam tempora! Corporis sed blanditiis deserunt, nesciunt error quam nemo voluptate praesentium iste in repellat nostrum quisquam commodi perspiciatis, incidunt facilis.</div>
+</div>
+
+</body>
+</html>
