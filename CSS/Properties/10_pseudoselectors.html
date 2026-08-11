@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pseudo Selectors</title>
+  <link rel="stylesheet" href="10_pseudoselectors.css">
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Pseudo-classes &amp; Pseudo-elements </h1>
+    <p>Selecting elements by state, position, and inserting virtual content</p>
+  </div>
+
+  <main class="container">
+
+
+    <!-- ============================================================
+      PART A — PSEUDO-CLASSES
+      A pseudo-class targets an element based on its STATE
+      or its POSITION relative to other elements.
+      Syntax: selector:pseudo-class { }  ← single colon
+    ============================================================ -->
+
+    <div class="part-label">PART A — Pseudo-Classes <span>( single colon : )</span></div>
+
+
+    <!-- SECTION 1 — User Interaction States -->
+    <section class="section">
+      <h2>1. :hover, :focus, :active — Interaction States</h2>
+
+      <p>
+        These are the most commonly used pseudo-classes.
+        They respond to what the user is <em>doing</em> right now.
+      </p>
+
+      <!-- hover -->
+      <h3>:hover — mouse is over the element</h3>
+      <div class="demo-row">
+        <div class="hover-box">Hover over me</div>
+        <button class="hover-btn">Hover me too</button>
+        <a href="#" class="hover-link">And me</a>
+      </div>
+
+      <!-- focus -->
+      <h3>:focus — element is focused (clicked or tabbed to)</h3>
+      <div class="demo-row">
+        <input type="text" class="focus-input" placeholder="Click or Tab to me">
+        <input type="text" class="focus-input-custom" placeholder="Custom focus style">
+        <button class="focus-btn">Tab to me</button>
+      </div>
+
+      <!-- active -->
+      <h3>:active — element is being clicked RIGHT NOW</h3>
+      <div class="demo-row">
+        <button class="active-btn">Hold click to see :active</button>
+        <div class="active-box">Hold click on me</div>
+      </div>
+
+      <!-- combining states -->
+      <h3>Combining states — a fully styled button</h3>
+      <div class="demo-row">
+        <button class="full-btn">Hover · Click · Focus me</button>
+        <button class="full-btn" disabled>Disabled button</button>
+      </div>
+    </section>
+
+
+    <!-- SECTION 2 — Link States -->
+    <section class="section">
+      <h2>2. :link, :visited — Link States</h2>
+
+      <p>
+        Links have two unique pseudo-classes for their history state.
+        Write them in <strong>LoVe HAte</strong> order:
+        <code>:link</code> → <code>:visited</code> → <code>:hover</code> → <code>:active</code>
+      </p>
+
+      <div class="link-demo">
+        <a href="#never-visited" class="styled-link">Unvisited link (:link)</a>
+        <a href="https://google.com" class="styled-link" target="_blank" rel="noopener noreferrer">
+          Click this then come back — see :visited
+        </a>
+        <a href="#" class="styled-link">Hover and click me</a>
+      </div>
+
+      <p class="note-box">
+        💡 Write link pseudo-classes in this exact order —
+        <strong>L</strong>o<strong>V</strong>e <strong>HA</strong>te —
+        Link, Visited, Hover, Active.
+        Wrong order causes later rules to accidentally override earlier ones.
+      </p>
+    </section>
+
+
+    <!-- SECTION 3 — Child Position -->
+    <section class="section">
+      <h2>3. :first-child, :last-child, :nth-child()</h2>
+
+      <p>
+        These select elements based on their position within their parent.
+        Very useful for styling lists and table rows.
+      </p>
+
+      <h3>:first-child and :last-child</h3>
+      <ul class="position-list">
+        <li>Item 1 — :first-child (red)</li>
+        <li>Item 2 — normal</li>
+        <li>Item 3 — normal</li>
+        <li>Item 4 — normal</li>
+        <li>Item 5 — :last-child (green)</li>
+      </ul>
+
+      <h3>:nth-child() — select by formula or keyword</h3>
+      <ul class="nth-list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+      </ul>
+
+      <div class="nth-legend">
+        <span class="leg-even">even (2,4,6,8)</span>
+        <span class="leg-3n">3n (3,6,9...)</span>
+        <span class="leg-first">first-child</span>
+      </div>
+
+      <h3>:nth-child() — useful formulas</h3>
+      <table class="formula-table">
+        <thead><tr><th>Formula</th><th>Selects</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><code>:nth-child(2)</code></td>     <td>Exactly the 2nd child</td>       <td>li:nth-child(2)</td></tr>
+          <tr><td><code>:nth-child(even)</code></td>  <td>Every even child (2,4,6...)</td>  <td>tr:nth-child(even) — zebra rows</td></tr>
+          <tr><td><code>:nth-child(odd)</code></td>   <td>Every odd child (1,3,5...)</td>   <td>tr:nth-child(odd)</td></tr>
+          <tr><td><code>:nth-child(3n)</code></td>    <td>Every 3rd child (3,6,9...)</td>   <td>li:nth-child(3n)</td></tr>
+          <tr><td><code>:nth-child(3n+1)</code></td>  <td>Every 3rd, starting at 1</td>     <td>1, 4, 7, 10...</td></tr>
+          <tr><td><code>:nth-child(-n+3)</code></td>  <td>First 3 children only</td>        <td>1, 2, 3</td></tr>
+          <tr><td><code>:nth-last-child(1)</code></td><td>Last child (same as :last-child)</td><td>last item</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <!-- SECTION 4 — :not() -->
+    <section class="section">
+      <h2>4. :not() — Excluding Elements</h2>
+
+      <p>
+        <code>:not(selector)</code> selects every element that does
+        NOT match the selector inside the parentheses.
+        Think of it as "style everything except..."
+      </p>
+
+      <h3>Style all list items EXCEPT the one with class="special"</h3>
+      <ul class="not-list">
+        <li>Normal item</li>
+        <li>Normal item</li>
+        <li class="special"> I am .special — not dimmed</li>
+        <li>Normal item</li>
+        <li>Normal item</li>
+      </ul>
+
+      <h3>Add dividers between items but NOT after the last one</h3>
+      <div class="not-divider">
+        <div class="divider-item">Home</div>
+        <div class="divider-item">About</div>
+        <div class="divider-item">Work</div>
+        <div class="divider-item">Contact</div>
+      </div>
+      <p style="font-size:13px; color:#888;">
+        ↑ Borders between items but NOT after the last one —
+        using <code>.divider-item:not(:last-child)</code>
+      </p>
+    </section>
+
+
+    <!-- SECTION 5 — Form States -->
+    <section class="section">
+      <h2>5. :checked, :disabled, :required, :valid, :invalid</h2>
+
+      <p>
+        These target form elements based on their current state.
+        Very useful for building interactive forms without JavaScript.
+      </p>
+
+      <!-- checked -->
+      <h3>:checked — checkbox or radio is ticked</h3>
+      <div class="form-states-demo">
+        <label class="custom-check">
+          <input type="checkbox" class="check-input">
+          <span class="check-label">Click to check me — style changes!</span>
+        </label>
+        <label class="custom-check">
+          <input type="checkbox" class="check-input" checked>
+          <span class="check-label">I start checked</span>
+        </label>
+      </div>
+
+      <!-- disabled -->
+      <h3>:disabled and :enabled</h3>
+      <div class="demo-row">
+        <input type="text" class="state-input" placeholder="Enabled input" value="">
+        <input type="text" class="state-input" placeholder="Disabled input" disabled>
+        <button class="state-btn">Enabled button</button>
+        <button class="state-btn" disabled>Disabled button</button>
+      </div>
+
+      <!-- required, valid, invalid -->
+      <h3>:required, :valid, :invalid — form validation states</h3>
+      <div class="validation-demo">
+        <div class="val-group">
+          <label>Email (required):</label>
+          <input type="email" class="val-input" placeholder="type an email..." required>
+          <span class="val-hint">Green border when valid email, red when invalid</span>
+        </div>
+        <div class="val-group">
+          <label>Name (required):</label>
+          <input type="text" class="val-input" placeholder="type your name..." required minlength="2">
+          <span class="val-hint">Red border when empty (required but unfilled)</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 6 — Utility Pseudo-classes -->
+    <section class="section">
+      <h2>6. :empty, :focus-within, :is(), :where()</h2>
+
+      <!-- :empty -->
+      <h3>:empty — targets elements with NO children or text</h3>
+      <div class="empty-demo">
+        <div class="empty-box">I have content</div>
+        <div class="empty-box"></div>
+        <div class="empty-box">I have content too</div>
+        <div class="empty-box"></div>
+      </div>
+      <p style="font-size:13px; color:#888;">
+        ↑ Empty divs get a striped pattern — non-empty ones get the normal style
+      </p>
+
+      <!-- :focus-within -->
+      <h3>:focus-within — highlights a PARENT when any CHILD is focused</h3>
+      <p style="font-size:14px; color:#666;">
+        Click inside either form group to see the whole group highlight:
+      </p>
+      <div class="fw-form">
+        <div class="fw-group">
+          <label>Username</label>
+          <input type="text" placeholder="Click me — the whole box highlights">
+        </div>
+        <div class="fw-group">
+          <label>Password</label>
+          <input type="password" placeholder="Click me too">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+      PART B — PSEUDO-ELEMENTS
+      A pseudo-element targets a SPECIFIC PART of an element,
+      or inserts virtual content before/after it.
+      Syntax: selector::pseudo-element { }  ← DOUBLE colon
+    ============================================================ -->
+
+    <div class="part-label">PART B — Pseudo-Elements <span>( double colon :: )</span></div>
+
+
+    <!-- SECTION 7 — ::before and ::after -->
+    <section class="section">
+      <h2>7. ::before and ::after — Inserting Virtual Content</h2>
+
+      <p>
+        <code>::before</code> and <code>::after</code> insert a virtual
+        element BEFORE or AFTER an element's content.
+        They require a <code>content</code> property (even if it's empty <code>""</code>).
+        They are the most powerful and commonly used pseudo-elements.
+      </p>
+
+      <p style="font-size:14px; color:#666;">
+        Think of them as invisible extra elements you can style —
+        without adding any HTML. The generated content is not in the DOM.
+      </p>
+
+      <!-- Basic ::before / ::after -->
+      <h3>Basic text insertion</h3>
+      <div class="demo-row">
+        <p class="before-quote">This paragraph has automatic quote marks added by CSS — no HTML needed.</p>
+      </div>
+
+      <!-- Labels with ::before -->
+      <h3>Status labels using ::before</h3>
+      <div class="status-list">
+        <div class="status success">Deployment complete</div>
+        <div class="status warning">Pending review</div>
+        <div class="status error">Build failed</div>
+        <div class="status info">New update available</div>
+      </div>
+
+      <!-- Decorative ::after -->
+      <h3>Underline effect on headings using ::after</h3>
+      <div class="fancy-headings">
+        <h3 class="fancy-h">About Us</h3>
+        <h3 class="fancy-h">Our Services</h3>
+        <h3 class="fancy-h">Contact</h3>
+      </div>
+
+      <!-- ::before for icons/bullets -->
+      <h3>Custom list bullets using ::before</h3>
+      <ul class="custom-bullets">
+        <li>Learn HTML fundamentals</li>
+        <li>Master CSS layouts</li>
+        <li>Build with JavaScript</li>
+        <li>Create React apps</li>
+        <li>Deploy with Docker</li>
+      </ul>
+
+      <!-- Tooltip with ::after -->
+      <h3>Tooltip using ::after (hover the badges)</h3>
+      <div class="tooltip-demo">
+        <span class="tooltip-wrap" data-tip="HTML structures content">HTML</span>
+        <span class="tooltip-wrap" data-tip="CSS styles appearance">CSS</span>
+        <span class="tooltip-wrap" data-tip="JS adds interactivity">JS</span>
+        <span class="tooltip-wrap" data-tip="React builds components">React</span>
+      </div>
+
+      <!-- Overlay with ::before -->
+      <h3>Image overlay using ::before</h3>
+      <div class="overlay-cards">
+        <div class="overlay-card">
+          <span>Hover to reveal overlay</span>
+        </div>
+        <div class="overlay-card">
+          <span>Hover me too</span>
+        </div>
+        <div class="overlay-card">
+          <span>And me</span>
+        </div>
+      </div>
+
+      <p class="note-box">
+         <strong>The most important rule:</strong> <code>::before</code>
+        and <code>::after</code> MUST have a <code>content</code> property
+        or they will not appear at all — even if everything else is correct.
+        Use <code>content: ""</code> for purely decorative elements.
+      </p>
+    </section>
+
+
+    <!-- SECTION 8 — Text Pseudo-elements -->
+    <section class="section">
+      <h2>8. ::first-line &amp; ::first-letter</h2>
+
+      <p>
+        These target specific text within a block element —
+        without wrapping the text in any extra HTML tags.
+      </p>
+
+      <h3>::first-letter — style the first character</h3>
+      <p class="drop-cap">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat.
+      </p>
+
+      <h3>::first-line — style only the first line of a paragraph</h3>
+      <p class="first-line-demo">
+        The first line of this paragraph is styled differently — bold,
+        colored, and slightly larger. As you resize the browser, the
+        "first line" automatically updates because it is based on the
+        actual rendered line, not a fixed number of characters.
+        This second sentence is on a new line and looks normal.
+      </p>
+    </section>
+
+
+    <!-- SECTION 9 — ::placeholder and ::selection -->
+    <section class="section">
+      <h2>9. ::placeholder &amp; ::selection</h2>
+
+      <!-- ::placeholder -->
+      <h3>::placeholder — style the hint text in inputs</h3>
+      <div class="demo-row">
+        <input type="text" class="placeholder-default" placeholder="Enter your Password">
+        <input type="text" class="placeholder-styled" placeholder="Styled placeholder">
+        <input type="text" class="placeholder-italic" placeholder="Italic placeholder">
+      </div>
+
+      <!-- ::selection -->
+      <h3>::selection — style text when user highlights it</h3>
+      <p class="selection-demo">
+        Try selecting/highlighting this text with your mouse!
+        The selection color will be purple with white text
+        instead of the default blue — controlled by <code>::selection</code>.
+      </p>
+
+      <div class="selection-boxes">
+        <p class="sel-green">Select this text — green highlight</p>
+        <p class="sel-orange">Select this text — orange highlight</p>
+        <p class="sel-pink">Select this text — pink highlight</p>
+      </div>
+    </section>
+
+
+    <!-- Cheat sheet -->
+    <section class="section">
+      <h2>📋 Pseudo-classes &amp; Pseudo-elements Cheat Sheet</h2>
+
+      <h3>Pseudo-classes — single colon (:)</h3>
+      <table class="formula-table">
+        <thead><tr><th>Pseudo-class</th><th>What it targets</th></tr></thead>
+        <tbody>
+          <tr><td><code>:hover</code></td>         <td>Mouse is over the element</td></tr>
+          <tr><td><code>:focus</code></td>          <td>Element is focused</td></tr>
+          <tr><td><code>:active</code></td>         <td>Element is being clicked</td></tr>
+          <tr><td><code>:visited</code></td>        <td>Link has been visited</td></tr>
+          <tr><td><code>:first-child</code></td>    <td>First child of its parent</td></tr>
+          <tr><td><code>:last-child</code></td>     <td>Last child of its parent</td></tr>
+          <tr><td><code>:nth-child(n)</code></td>   <td>nth child — supports formulas</td></tr>
+          <tr><td><code>:not(selector)</code></td>  <td>Everything EXCEPT the selector</td></tr>
+          <tr><td><code>:checked</code></td>        <td>Checked checkbox or radio</td></tr>
+          <tr><td><code>:disabled</code></td>       <td>Disabled form element</td></tr>
+          <tr><td><code>:required</code></td>       <td>Required form field</td></tr>
+          <tr><td><code>:valid</code></td>          <td>Field with valid value</td></tr>
+          <tr><td><code>:invalid</code></td>        <td>Field with invalid value</td></tr>
+          <tr><td><code>:empty</code></td>          <td>Element with no content</td></tr>
+          <tr><td><code>:focus-within</code></td>   <td>Parent of a focused child</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Pseudo-elements — double colon (::)</h3>
+      <table class="formula-table">
+        <thead><tr><th>Pseudo-element</th><th>What it targets</th></tr></thead>
+        <tbody>
+          <tr><td><code>::before</code></td>        <td>Inserts virtual content BEFORE the element</td></tr>
+          <tr><td><code>::after</code></td>         <td>Inserts virtual content AFTER the element</td></tr>
+          <tr><td><code>::first-letter</code></td>  <td>The very first character of a block element</td></tr>
+          <tr><td><code>::first-line</code></td>    <td>The first rendered line of a block element</td></tr>
+          <tr><td><code>::placeholder</code></td>   <td>Placeholder text inside inputs</td></tr>
+          <tr><td><code>::selection</code></td>     <td>Text currently selected by the user</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+
+  </main>
+
+  <footer class="page-footer">
+    <p>✅ CSS File 7 Complete — Pseudo-classes &amp; Pseudo-elements done! Next: Transitions &amp; Animations 🚀</p>
+  </footer>
+
+</body>
+</html>
