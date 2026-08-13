@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsiveness</title>
+    <style>
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            position: relative;
+            background: radial-gradient(rgb(165, 196, 196),rgb(157, 157, 199),rgb(220, 177, 220)) ;
+            border-radius: 4px;
+        }
+
+        a{
+            color: black;
+            text-decoration: none;
+            border-bottom: 3px solid blue;
+            margin: 16px;
+
+        }
+        .logo{
+            margin-left: 10px;
+            margin-right: auto;
+        }
+        .webName{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Tablet and below: tighten spacing, keep row layout */
+        @media (max-width: 768px) {
+            a{
+                margin: 10px;
+            }
+        }
+
+        /* Mobile: stack nav items vertically, drop the absolute centering */
+        @media (max-width: 480px) {
+            .navbar{
+                flex-direction: column;
+                align-items: center;
+            }
+            .logo{
+                margin: 10px 0 0 0;
+            }
+            .webName{
+                position: static;
+                transform: none;
+                margin: 4px 0;
+            }
+            a{
+                margin: 6px 0;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar">
+        <p class="logo">LOGO</p>
+        <p class="webName">WebsiteName</p>
+        <a href="Home.html">Home</a>
+        <a href="Profile.html">Profile</a>
+        <a href="Contact.html">Contact</a>
+        <a href="Help.html">Help</a>
+        
+    </nav>
+
+   <h1>What is Responsive Design?</h1>
+
+      <p>
+        Responsive design means building one website that looks and
+        works great on <strong>every screen size</strong> — from a
+        320px phone to a 2560px desktop monitor.
+      </p>
+
+</body>
+</html>
