@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transitions and Animations</title>
+<style>
+.box{
+    background: linear-gradient(pink,purple,red);
+    height: 100px;
+    border: 4px solid;
+    border-radius: 4px;
+}
+
+.box:hover{
+    background: radial-gradient(red,pink,blue);
+}
+.button{
+    background: linear-gradient(pink,purple,red);
+    height: 50px;
+    width: 100%;
+    border-radius: 4px;
+    margin: 10px;
+}
+.button:hover{
+     background: linear-gradient(rgb(240, 216, 220),rgb(158, 110, 158),rgb(175, 133, 133));
+    transform: translateY(-4px);
+}
+
+timing-demo { margin: 12px 0; }
+
+.timing-track {
+  background: #f8f9fa;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timing-item {
+  padding: 10px 16px;
+  background: #4f4a57;
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  width: fit-content;
+  cursor: default;
+}
+
+/* Each item uses a different timing function */
+.timing-track:hover .ease         { transform: translateX(300px); transition: transform 3s ease; }
+.timing-track:hover .linear       { transform: translateX(300px); transition: transform 3s linear; }
+.timing-track:hover .ease-in      { transform: translateX(300px); transition: transform 3s ease-in; }
+.timing-track:hover .ease-out     { transform: translateX(300px); transition: transform 3s ease-out; }
+.timing-track:hover .ease-in-out  { transform: translateX(300px); transition: transform 3s ease-in-out; }
+.timing-track:hover .cubic        { transform: translateX(300px); transition: transform 3s cubic-bezier(0.68,-0.55,0.27,1.55); }
+
+.delay-0 { padding: 12px 18px; background: #e74c3c; color: white; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.3s ease 0s; }
+.delay-1 { padding: 12px 18px; background: #e67e22; color: white; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.3s ease 0.2s; }
+.delay-2 { padding: 12px 18px; background: #f39c12; color: white; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.3s ease 0.4s; }
+.delay-3 { padding: 12px 18px; background: #f1c40f; color: #333;  border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; transition: transform 0.3s ease 0.6s; }
+
+.delay-0:hover, .delay-1:hover,
+.delay-2:hover, .delay-3:hover { transform: translateY(-10px); }
+
+/* Hover the whole row to trigger staggered effect */
+.demo-row:has(.delay-0):hover .delay-0 { transform: translateY(-10px); }
+.demo-row:has(.delay-1):hover .delay-1 { transform: translateY(-10px); }
+.demo-row:has(.delay-2):hover .delay-2 { transform: translateY(-10px); }
+.demo-row:has(.delay-3):hover .delay-3 { transform: translateY(-10px); }
+
+/* ANimations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft{
+    from {transform: translateX(-40);opacity:0;}
+    to {transform: translateX(0);opacity: 1;}
+}
+@keyframes growIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-30px); }
+}
+
+@keyframes colorShift {
+  0%   { background: #e74c3c; }
+  25%  { background: #f39c12; }
+  50%  { background: #2ecc71; }
+  75%  { background: #3498db; }
+  100% { background: #9b59b6; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.08); opacity: 0.8; }
+}
+
+
+/* keyframe demo items */
+.kf-demo-wrap {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.kf-fade, .kf-slide, .kf-grow,
+.kf-bounce, .kf-colorchange, .kf-pulse {
+  flex: 1;
+  min-width: 120px;
+  padding: 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  background: #70687d;
+}
+
+.kf-fade       { animation: fadeIn      1.9s ease infinite alternate; }
+.kf-slide      { animation: slideInLeft 1.5s ease infinite alternate; }
+.kf-grow       { animation: growIn      1.5s ease infinite alternate; }
+.kf-bounce     { animation: bounce      1s linear infinite; }
+.kf-colorchange{ animation: colorShift  3s linear infinite; }
+.kf-pulse      { animation: pulse       1.5s ease-in-out infinite; }
+
+
+
+
+</style>
+</head>
+<body>
+     <h1>Transitions &amp; Animations </h1>
+    <p>Making things move — smoothly and purposefully</p>
+<h2>Transition</h2>
+<p>  Transitions animate the change between two states.  Without a transition, changes
+        happen instantly</p>
+<p>Example</p>
+<div class="box"></div>
+<button class="button">Sign up</button>
+<h3>Transition Properties</h3>
+<!-- transition-property: all | none | specific-property
+     → "all" animates every changing property (convenient but slower)
+     → Specific: "color", "background", "transform", "opacity"
+     → Best practice: name only what you need to animate -->
+<!-- transition-duration: Xs or Xms
+     → How long the animation takes
+     → 0.1s–0.2s = snappy (good for hover effects)
+     → 0.3s–0.5s = smooth (good for reveals and slides)
+     → 0.5s–1s   = slow (good for page transitions)
+     → > 1s      = usually too slow for UI
+
+   transition-timing-function:
+     ease        → starts slow, speeds up, slows at end (default)
+     linear      → constant speed throughout
+     ease-in     → starts slow, speeds up (like accelerating)
+     ease-out    → starts fast, slows at end (like braking)
+     ease-in-out → slow at both ends, fast in middle
+     cubic-bezier(x1,y1,x2,y2) → custom curve (use cubic-bezier.com)
+     steps(n)    → jumps in n discrete steps (not smooth)
+
+   transition-delay: Xs
+     → Wait this long before starting the animation
+     → Useful for staggered effects (each item delays slightly more) -->
+<div class="timing-demo">
+        <div class="timing-track" id="timing-trigger">
+          <div class="timing-item ease">ease</div>
+          <div class="timing-item linear">linear</div>
+          <div class="timing-item ease-in">ease-in</div>
+          <div class="timing-item ease-out">ease-out</div>
+          <div class="timing-item ease-in-out">ease-in-out</div>
+          <div class="timing-item cubic">cubic-bezier</div>
+        </div>
+      </div>
+
+  <h3>transition-delay — wait before starting</h3>
+      <div class="demo-row">
+        <div class="delay-0">delay: 0s</div>
+        <div class="delay-1">delay: 0.2s</div>
+        <div class="delay-2">delay: 0.4s</div>
+        <div class="delay-3">delay: 0.6s</div>
+      </div>
+  <h3>Transition Shorthand</h3>
+      <div class="">
+        transition: property &nbsp; duration &nbsp; timing-function &nbsp; delay;<br>
+        transition: background &nbsp; 0.3s &nbsp; ease &nbsp; 0s;<br>
+        transition: all &nbsp; 0.3s &nbsp; ease;<br>
+        transition: color 0.2s, background 0.3s, transform 0.2s; &nbsp; ← multiple
+      </div>
+    </section>
+
+    <section class="section">
+      <h2> Transform — Moving, Scaling, Rotating, Skewing</h2>
+
+      <p>
+        <code>transform</code> changes the visual appearance of an element
+        without affecting the document flow. Combined with transitions,
+        transforms create the most common animations on the web.
+      </p>
+
+      <!-- translate -->
+      <h3>translate() — move an element</h3>
+      <div class="demo-row">
+        <div class="tr-right">→ translateX(20px)</div>
+        <div class="tr-up">↑ translateY(-20px)</div>
+        <div class="tr-both">↗ translate(20px, -20px)</div>
+      </div>
+
+      <!-- scale -->
+      <h3>scale() — resize an element</h3>
+      <div class="demo-row">
+        <div class="sc-up">scale(1.3) grow</div>
+        <div class="sc-down">scale(0.8) shrink</div>
+        <div class="sc-x">scaleX(1.5) wide</div>
+        <div class="sc-y">scaleY(1.5) tall</div>
+      </div>
+
+      <!-- rotate -->
+      <h3>rotate() — spin an element</h3>
+      <div class="demo-row">
+        <div class="ro-45">rotate(45deg)</div>
+        <div class="ro-180">rotate(180deg)</div>
+        <div class="ro-neg">rotate(-45deg)</div>
+        <div class="ro-full">rotate(360deg)</div>
+      </div>
+
+      <!-- skew -->
+      <h3>skew() — tilt an element</h3>
+      <div class="demo-row">
+        <div class="sk-x">skewX(15deg)</div>
+        <div class="sk-y">skewY(10deg)</div>
+        <div class="sk-both">skew(10deg, 5deg)</div>
+      </div>
+
+      <!-- combining transforms -->
+      <h3>Combining transforms</h3>
+      <div class="demo-row">
+        <div class="tr-combine">rotate + scale + translate</div>
+      </div>
+
+      <p class="note-box">
+         <strong>transform vs position:</strong>
+        Use <code>transform: translate()</code> for animations —
+        it is GPU-accelerated and does not cause layout recalculation.
+        Never animate <code>top/left/margin</code> — it is slow.
+        The two best properties to animate are
+        <code>transform</code> and <code>opacity</code>.
+      </p>
+    </section>
+
+
+    <h1>Animations</h1>
+    <p> 
+        <code>@keyframes</code> defines WHAT happens during an animation.
+        You set the state at different points (0% = start, 100% = end).
+        Then you attach the animation to an element using <code>animation-name</code>.
+      </p>
+
+<!-- @keyframes defines a named animation sequence.
+   You describe the state at various percentage points (0% to 100%).
+   from = 0%, to = 100% (shorthand for simple animations).
+
+   @keyframes myAnimation {
+     0%   { ... starting state ... }
+     50%  { ... midway state ... }
+     100% { ... ending state ... }
+   }
+
+   Then apply it:
+   .element { animation: myAnimation 1s ease forwards; }
+
+   The 8 animation sub-properties:
+   animation-name            → which @keyframes to use
+   animation-duration        → how long one cycle takes
+   animation-timing-function → speed curve (same as transition)
+   animation-delay           → wait before starting
+   animation-iteration-count → 1, 2, 3, infinite
+   animation-direction       → normal, reverse, alternate, alternate-reverse
+   animation-fill-mode       → none, forwards, backwards, both
+   animation-play-state      → running, paused (can be toggled with JS) -->
+  <!-- Basic keyframe demos -->
+      <h3>from / to — simple start and end</h3>
+      <div class="kf-demo-wrap">
+        <div class="kf-fade">fade in</div>
+        <div class="kf-slide">slide in</div>
+        <div class="kf-grow">grow in</div>
+      </div>
+
+      <!-- Multi-step keyframes -->
+      <h3>Multiple steps — 0%, 25%, 50%, 75%, 100%</h3>
+      <div class="kf-demo-wrap">
+        <div class="kf-bounce">bouncing</div>
+        <div class="kf-colorchange">color shift</div>
+        <div class="kf-pulse">pulsing</div>
+      </div>
+    </section>
+
+
+
+</body>
+</html>
