@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables & Strings</title>
+    <style>
+        body{ font-family: sans-serif; padding: 16px; }
+        .output{
+            background: #f8f9fa;
+            border-left: 4px solid #4f4a57;
+            padding: 8px 12px;
+            margin: 6px 0;
+            font-family: monospace;
+        }
+        code{ background: #eee; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Connecting JavaScript to HTML</h1>
+    <p>There are three ways to get JS running on a page.</p>
+
+    <h2>1. Inline — directly on an element</h2>
+    <p>An <code>on*</code> attribute (like <code>onclick</code>) runs a snippet of JS when that event fires. Fine for a quick test, but mixes JS into HTML — avoid it in real projects.</p>
+    <button onclick="document.getElementById('inline-output').innerText = 'Inline script ran!'">Click me</button>
+    <div id="inline-output" class="output">(waiting for click...)</div>
+
+    <h2>2. Internal — a &lt;script&gt; tag in the HTML file</h2>
+    <p>JS written between <code>&lt;script&gt;</code> tags, usually placed right before <code>&lt;/body&gt;</code> so the HTML above it has already loaded. This is what every demo on this page uses.</p>
+    <div id="internal-output" class="output"></div>
+
+    <h2>3. External — a separate .js file</h2>
+    <p>Best for real projects: keep JS in its own file and link it with <code>&lt;script src="file.js"&gt;&lt;/script&gt;</code>. Add the <code>defer</code> attribute so it downloads in parallel with the page but still runs only after the HTML is parsed.</p>
+    <div class="output">&lt;script src="script.js" defer&gt;&lt;/script&gt;</div>
+
+    <h2>Why placement matters</h2>
+    <p>The browser reads HTML top to bottom, building the DOM as it goes. When it hits a <code>&lt;script&gt;</code> tag, it <strong>stops parsing the HTML</strong>, runs the JS immediately, and only then continues down the page.</p>
+    <p>Two problems follow from that:</p>
+    <p>1. <strong>A script in <code>&lt;head&gt;</code> runs before the &lt;body&gt; exists.</strong> If that script tries <code>document.getElementById("var-output")</code>, the element isn't in the DOM yet — it returns <code>null</code>, and calling <code>.innerHTML</code> on it throws an error.</p>
+    <p>2. <strong>A blocking script also delays the page from rendering.</strong> The user stares at a blank/half-built page until the script finishes downloading and running.</p>
+    <p>That's why you have three options, each solving it differently:</p>
+    <p><code>&lt;script&gt;</code> right before <code>&lt;/body&gt;</code> — simplest fix: by the time the browser reaches it, everything above has already been parsed into the DOM, so the elements it looks up are guaranteed to exist.</p>
+    <p><code>&lt;script src="..." defer&gt;</code> in <code>&lt;head&gt;</code> — the modern fix: the browser downloads the file in the background without pausing the parser, and holds off running it until the whole document is parsed. Same safety as the bottom-of-body placement, but the download starts earlier (found sooner, since <code>&lt;head&gt;</code> is read first).</p>
+    <p>Inline <code>onclick</code> — sidesteps the whole issue: nothing runs until the user actually clicks, by which point the page is fully loaded regardless of where the attribute sits.</p>
+
+    <hr>
+
+    <h1>Variables</h1>
+    <p>Variables store values so you can reuse and change them later. JavaScript has three ways to declare one: <code>var</code>, <code>let</code>, and <code>const</code>.</p>
+
+    <h2>var vs let vs const</h2>
+    <p><code>var</code> is function-scoped and can be redeclared — it's the old way, mostly avoided now.</p>
+    <p><code>let</code> is block-scoped and can be reassigned — use this for values that change.</p>
+    <p><code>const</code> is block-scoped and cannot be reassigned — use this by default, unless the value needs to change.</p>
+    <div id="var-output" class="output"></div>
+
+    <h2>Data Types a Variable Can Hold</h2>
+    <p>A variable isn't tied to one type — it can hold a string, number, boolean, array, object, or nothing (<code>null</code>/<code>undefined</code>).</p>
+    <div id="types-output" class="output"></div>
+
+    <hr>
+
+    <h1>Strings</h1>
+    <p>A string is text, wrapped in single quotes, double quotes, or backticks.</p>
+    <div id="string-basic-output" class="output"></div>
+
+    <h2>Template Literals (Backticks)</h2>
+    <p>Backticks let you embed variables directly inside a string using <code>${...}</code>, instead of gluing pieces together with <code>+</code>.</p>
+    <div id="template-output" class="output"></div>
+
+    <h2>Common String Methods</h2>
+    <p><code>.length</code>, <code>.toUpperCase()</code>, <code>.toLowerCase()</code>, <code>.slice()</code>, <code>.includes()</code>, and <code>.split()</code> are the ones you'll reach for most.</p>
+    <div id="methods-output" class="output"></div>
+
+    <h1>Operators</h1>
+    <p>Operators perform operations on values.</p>
+    <div class="section">
+      <h2>3. Operators</h2>
+      <p>Operators perform operations on values — math, comparison, logic.</p>
+      <div class="output-box" id="output-operators">
+        <h3>Arithmetic Results</h3>
+        <div class="output-item">
+          <span class="output-label">10 + 3</span>
+          <span class="output-value" id="op-add">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 - 3</span>
+          <span class="output-value" id="op-sub">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 * 3</span>
+          <span class="output-value" id="op-mul">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 / 3</span>
+          <span class="output-value" id="op-div">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 % 3 (remainder)</span>
+          <span class="output-value" id="op-mod">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">2 ** 8 (power)</span>
+          <span class="output-value" id="op-pow">—</span>
+        </div>
+      </div>
+
+      <div class="output-box" style="margin-top:12px;">
+        <h3>Comparison Results (true / false)</h3>
+        <div class="output-item">
+          <span class="output-label">10 == "10" (loose)</span>
+          <span class="output-value" id="op-loose">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 === "10" (strict)</span>
+          <span class="output-value" id="op-strict">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 > 3</span>
+          <span class="output-value" id="op-gt">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 < 3</span>
+          <span class="output-value" id="op-lt">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">10 !== 3</span>
+          <span class="output-value" id="op-neq">—</span>
+        </div>
+      </div>
+
+      <div class="output-box" style="margin-top:12px;">
+        <h3>Logical Operators</h3>
+        <div class="output-item">
+          <span class="output-label">true && false (AND)</span>
+          <span class="output-value" id="op-and">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">true || false (OR)</span>
+          <span class="output-value" id="op-or">—</span>
+        </div>
+        <div class="output-item">
+          <span class="output-label">!true (NOT)</span>
+          <span class="output-value" id="op-not">—</span>
+        </div>
+      </div>
+    </div>
+
+    
+    
+    <!-- /*
+    
+  ── ARITHMETIC OPERATORS ─────────────────────────────────────────
+  +   addition
+  -   subtraction
+  *   multiplication
+  /   division
+  %   modulo (remainder after division)
+  **  exponentiation (power)
+  ++  increment (adds 1)
+  --  decrement (subtracts 1)
+
+  ── COMPARISON OPERATORS ─────────────────────────────────────────
+  ==   loose equality   → compares VALUE only (converts types first)
+  ===  strict equality  → compares VALUE and TYPE (always use this!)
+  !=   loose not equal
+  !==  strict not equal
+  >    greater than
+  <    less than
+  >=   greater than or equal
+  <=   less than or equal
+
+  WHY === INSTEAD OF ==?
+  10 == "10"  → true  (JS converts "10" to number first, then compares)
+  10 === "10" → false (different types: number vs string)
+  Always use === to avoid unexpected type conversion surprises.
+
+  ── LOGICAL OPERATORS ────────────────────────────────────────────
+ true && true {}  AND  → true only if BOTH sides are true
+ true || false {} OR   → true if AT LEAST ONE side is true
+  !true -> false   NOT  → flips true to false and false to true
+  !5<3 {}
+  ── ASSIGNMENT OPERATORS ─────────────────────────────────────────
+  =    assign x=2
+  +=   add and assign:  x += 5  is same as  x = x + 5
+  -=   subtract and assign 
+  *=   multiply and assign
+  /=   divide and assign
+*/ 
+-->
+
+    <script>
+
+     function show(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent  = String(value);
+}   
+        // Internal script — proof this block is running
+        document.getElementById("internal-output").innerText = "This text was set by the internal <script> block at the bottom of the page.";
+
+        // var vs let vs const
+        var oldWay = "I can be redeclared";
+        var oldWay = "See?";
+        let count = 1;
+        count = 2;
+        const name = "Ayesha";
+
+        document.getElementById("var-output").innerHTML = `
+            var oldWay = "${oldWay}"<br>
+            let count = ${count}<br>
+            const name = "${name}"
+        `;
+
+        // Data types
+        let aString = "hello";
+        let aNumber = 42;
+        let aBoolean = true;
+        let anArray = [1, 2, 3];
+        let anObject = { role: "developer" };
+
+        document.getElementById("types-output").innerHTML = `
+            typeof aString → ${typeof aString}<br>
+            typeof aNumber → ${typeof aNumber}<br>
+            typeof aBoolean → ${typeof aBoolean}<br>
+            typeof anArray → ${typeof anArray} (arrays report as "object")<br>
+            typeof anObject → ${typeof anObject}
+        `;
+
+        // String basics
+        let single = 'single quotes';
+        let double = "double quotes";
+        document.getElementById("string-basic-output").innerHTML = `
+            'single quotes' and "double quotes" both work the same — pick one style and stay consistent.
+        `;
+
+        // Template literals
+        let user = "Ayesha";
+        let age = 25;
+        let oldConcat = "My name is " + user + " and I am " + age + " years old.";
+        let templateLiteral = `My name is ${user} and I am ${age} years old.`;
+
+        document.getElementById("template-output").innerHTML = `
+            Concatenation: ${oldConcat}<br>
+            Template literal: ${templateLiteral}
+        `;
+
+        // String methods
+        let phrase = "Learning JavaScript";
+        document.getElementById("methods-output").innerHTML = `
+            phrase = "${phrase}"<br>
+            .length → ${phrase.length}<br>
+            .toUpperCase() → ${phrase.toUpperCase()}<br>
+            .toLowerCase() → ${phrase.toLowerCase()}<br>
+            .slice(0, 8) → ${phrase.slice(0, 8)}<br>
+            .includes("Script") → ${phrase.includes("Script")}<br>
+            .split(" ") → ${JSON.stringify(phrase.split(" "))}
+        `;
+
+        console.log("\n=== ARITHMETIC OPERATORS ===");
+// Operators
+console.log("\n=== ARITHMETIC OPERATORS ===");
+
+const a = 10;
+const b = 3;
+
+console.log("10 + 3 =", a + b);    // 13
+console.log("10 - 3 =", a - b);    // 7
+console.log("10 * 3 =", a * b);    // 30
+console.log("10 / 3 =", a / b);    // 3.3333...
+console.log("10 % 3 =", a % b);    // 1  (10 divided by 3 = 3 remainder 1)
+console.log("2 ** 8 =", 2 ** 8);   // 256
+
+// increment / decrement
+let counter = 0;
+counter++;   // same as counter = counter + 1
+console.log("counter after ++:", counter);   // 1
+counter--;   // same as counter = counter - 1
+console.log("counter after --:", counter);   // 0
+
+// Update HTML
+show("op-add", a + b);
+show("op-sub", a - b);
+show("op-mul", a * b);
+show("op-div", (a / b).toFixed(4));
+show("op-mod", a % b);
+show("op-pow", 2 ** 8);
+
+console.log("\n=== COMPARISON OPERATORS ===");
+
+console.log('10 == "10"  →', 10 == "10");    // true  (loose)
+console.log('10 === "10" →', 10 === "10");   // false (strict)
+console.log("10 > 3  →", 10 > 3);            // true
+console.log("10 < 3  →", 10 < 3);            // false
+console.log("10 !== 3 →", 10 !== 3);         // true
+
+show("op-loose",  10 == "10");
+show("op-strict", 10 === "10");
+show("op-gt",     10 > 3);
+show("op-lt",     10 < 3);
+show("op-neq",    10 !== 3);
+
+console.log("\n=== LOGICAL OPERATORS ===");
+
+console.log("true && false →", true && false);   // false
+console.log("true || false →", true || false);   // true
+console.log("!true →",         !true);            // false
+
+// Practical example
+const hasAccount = true;
+const isVerified = false;
+
+if (hasAccount && isVerified) {
+  console.log("Access granted");
+} else {
+  console.log("Access denied — need both account AND verified");
+}
+
+show("op-and", true && false);
+show("op-or",  true || false);
+show("op-not", !true);
+
+// Assignment operators
+let points = 10;
+points += 5;    // points = points + 5 = 15
+points *= 2;    // points = points * 2 = 30
+console.log("points after += 5, then *= 2:", points);   // 30
+
+
+    </script>
+</body>
+</html>
