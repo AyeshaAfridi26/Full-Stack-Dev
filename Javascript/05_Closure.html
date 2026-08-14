@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+    <style>
+       * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+
+        .output{
+            background: #f8f9fa;
+            border-left: 4px solid #4f4a57;
+            padding: 8px 12px;
+            margin: 6px 0;
+            font-family: monospace;
+        }
+      
+    code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+    </style>
+</head>
+<body>
+    <h1>Closures</h1>
+    <p>A closure is a function that remembers the variables from the scope it was <strong>created</strong> in, even after that outer scope has finished running. Every function in JS forms a closure over its surrounding scope — this is just what happens when you actually use it.</p>
+
+    <h2>The Basic Shape</h2>
+    <p>An outer function returns an inner function. The inner function keeps a live reference to the outer function's variables — it doesn't copy them, it stays connected to them.</p>
+    <div id="basic-output" class="output"></div>
+    <p><code>
+        <pre>
+              // The basic shape
+        function outer() {
+            let message = "I was created inside outer()";
+            function inner() {
+                return message;
+            }
+            return inner;
+        }
+        const innerFn = outer(); // outer() has already finished running here
+        document.getElementById("basic-output").innerHTML = `
+            innerFn() → ${innerFn()} (outer() already returned, but inner() still remembers "message")
+        `;
+        </pre>
+    </code></p>
+    <h2>Private State — the counter pattern</h2>
+    <p><code>count</code> can't be reached or changed from outside <code>makeCounter()</code> — the only way to touch it is through the function that closed over it. This is how JS fakes "private" variables.</p>
+    <div id="counter-output" class="output"></div>
+    <p>
+        <code><pre>
+            
+        // Private state — counter
+        function makeCounter() {
+            let count = 0;
+            return {
+                increment: () => ++count,
+                decrement: () => --count,
+                value: () => count
+            };
+        }
+        const counter = makeCounter();
+        counter.increment();
+        counter.increment();
+        counter.increment();
+        counter.decrement();
+        document.getElementById("counter-output").innerHTML = `
+            after 3x increment(), 1x decrement() → counter.value() = ${counter.value()}<br>
+            counter.count directly → ${counter.count} (undefined — it was never exposed)
+        `;
+        </pre></code>
+    </p>
+
+    <h2>Each Call Gets Its Own Closure</h2>
+    <p>Calling the outer function again creates a brand new, separate scope. Two counters don't share state — each one closes over its own independent <code>count</code>.</p>
+    <div id="separate-output" class="output"></div>
+    <p><code><pre>
+        // Separate closures per call
+        const counterA = makeCounter();
+        const counterB = makeCounter();
+        counterA.increment();
+        counterA.increment();
+        counterB.increment();
+        document.getElementById("separate-output").innerHTML = `
+            counterA: incremented twice → ${counterA.value()}<br>
+            counterB: incremented once → ${counterB.value()} (completely separate state)
+        `;
+    </pre></code></p>
+    <h2>Function Factories</h2>
+    <p>A closure can also "lock in" a value passed as an argument, then reuse it every time the returned function is called later.</p>
+    <div id="factory-output" class="output"></div>
+    <p>
+        <code>
+            <pre>
+                / Function factories
+        function makeMultiplier(factor) {
+            return function(n) {
+                return n * factor;
+            };
+        }
+        const double = makeMultiplier(2);
+        const triple = makeMultiplier(3);
+        document.getElementById("factory-output").innerHTML = `
+            double(5) → ${double(5)} (factor locked in as 2)<br>
+            triple(5) → ${triple(5)} (factor locked in as 3)
+        `;
+
+            </pre>
+        </code>
+    </p>
+
+
+    <h2>The Classic Loop Bug — var vs let</h2>
+    <p><code>var</code> is function-scoped, so all three timeouts share the <strong>same</strong> <code>i</code> — by the time they run, the loop has already finished and <code>i</code> is 3. <code>let</code> is block-scoped, so each loop iteration gets its <strong>own</strong> <code>i</code>, and each closure remembers its own value.</p>
+    <div id="loop-output" class="output"></div>
+    <p>
+        <code>
+            <pre>
+                // The loop bug
+        let varResults = [];
+        let letResults = [];
+
+        for (var i = 0; i < 3; i++) {
+            setTimeout(() => varResults.push(`var: i is ${i}`), 0);
+        }
+        for (let j = 0; j < 3; j++) {
+            setTimeout(() => letResults.push(`let: j is ${j}`), 0);
+        }
+        setTimeout(() => {
+            document.getElementById("loop-output").innerHTML = `
+                ${varResults.join("<br>")} (all three see the final value of i)<br><br>
+                ${letResults.join("<br>")} (each closure kept its own j)
+            `;
+        }, 10);
+            </pre>
+        </code>
+    </p>
+
+
+    <h2>Memoization — caching with a closure</h2>
+    <p>The cache object lives in the outer scope, hidden from anything outside. The returned function checks the cache before doing expensive work again.</p>
+    <div id="memo-output" class="output"></div>
+    <p>
+        <code>
+            <pre>
+                 // Memoization
+        function makeMemoizedSquare() {
+            const cache = {};
+            return function(n) {
+                if (n in cache) {
+                    return `${cache[n]} (from cache)`;
+                }
+                const result = n * n;
+                cache[n] = result;
+                return `${result} (calculated)`;
+            };
+        }
+        const memoSquare = makeMemoizedSquare();
+        document.getElementById("memo-output").innerHTML = `
+            memoSquare(4) → ${memoSquare(4)}<br>
+            memoSquare(4) → ${memoSquare(4)}<br>
+            memoSquare(5) → ${memoSquare(5)}
+        `;
+
+   
+            </pre>
+        </code>
+    </p>
+
+
+    <h2>Module Pattern</h2>
+    <p>An IIFE that returns an object exposes only chosen methods, while variables declared inside stay private. This is how JS built "public API, private internals" before <code>class</code> and modules existed.</p>
+    <div id="module-output" class="output"></div>
+    <p><code>
+        <pre>
+            // Module pattern
+        const bankAccount = (function() {
+            let balance = 100; // private — no way to reach this from outside
+
+            return {
+                deposit(amount) {
+                    balance += amount;
+                    return balance;
+                },
+                withdraw(amount) {
+                    if (amount > balance) return "insufficient funds";
+                    balance -= amount;
+                    return balance;
+                },
+                getBalance() {
+                    return balance;
+                }
+            };
+        })();
+        document.getElementById("module-output").innerHTML = `
+            starting balance → ${bankAccount.getBalance()}<br>
+            deposit(50) → ${bankAccount.deposit(50)}<br>
+            withdraw(30) → ${bankAccount.withdraw(30)}<br>
+            bankAccount.balance directly → ${bankAccount.balance} (undefined — stays private)
+        `;
+        </pre>
+    </code></p>
+    <script>
+        // The basic shape
+        function outer() {
+            let message = "I was created inside outer()";
+            function inner() {
+                return message;
+            }
+            return inner;
+        }
+        const innerFn = outer(); // outer() has already finished running here
+        document.getElementById("basic-output").innerHTML = `
+            innerFn() → ${innerFn()} (outer() already returned, but inner() still remembers "message")
+        `;
+
+        // Private state — counter
+        function makeCounter() {
+            let count = 0;
+            return {
+                increment: () => ++count,
+                decrement: () => --count,
+                value: () => count
+            };
+        }
+        const counter = makeCounter();
+        counter.increment();
+        counter.increment();
+        counter.increment();
+        counter.decrement();
+        document.getElementById("counter-output").innerHTML = `
+            after 3x increment(), 1x decrement() → counter.value() = ${counter.value()}<br>
+            counter.count directly → ${counter.count} (undefined — it was never exposed)
+        `;
+
+        // Separate closures per call
+        const counterA = makeCounter();
+        const counterB = makeCounter();
+        counterA.increment();
+        counterA.increment();
+        counterB.increment();
+        document.getElementById("separate-output").innerHTML = `
+            counterA: incremented twice → ${counterA.value()}<br>
+            counterB: incremented once → ${counterB.value()} (completely separate state)
+        `;
+
+        // Function factories
+        function makeMultiplier(factor) {
+            return function(n) {
+                return n * factor;
+            };
+        }
+        const double = makeMultiplier(2);
+        const triple = makeMultiplier(3);
+        document.getElementById("factory-output").innerHTML = `
+            double(5) → ${double(5)} (factor locked in as 2)<br>
+            triple(5) → ${triple(5)} (factor locked in as 3)
+        `;
+
+        // The loop bug
+        let varResults = [];
+        let letResults = [];
+
+        for (var i = 0; i < 3; i++) {
+            setTimeout(() => varResults.push(`var: i is ${i}`), 0);
+        }
+        for (let j = 0; j < 3; j++) {
+            setTimeout(() => letResults.push(`let: j is ${j}`), 0);
+        }
+        setTimeout(() => {
+            document.getElementById("loop-output").innerHTML = `
+                ${varResults.join("<br>")} (all three see the final value of i)<br><br>
+                ${letResults.join("<br>")} (each closure kept its own j)
+            `;
+        }, 10);
+
+        // Memoization
+        function makeMemoizedSquare() {
+            const cache = {};
+            return function(n) {
+                if (n in cache) {
+                    return `${cache[n]} (from cache)`;
+                }
+                const result = n * n;
+                cache[n] = result;
+                return `${result} (calculated)`;
+            };
+        }
+        const memoSquare = makeMemoizedSquare();
+        document.getElementById("memo-output").innerHTML = `
+            memoSquare(4) → ${memoSquare(4)}<br>
+            memoSquare(4) → ${memoSquare(4)}<br>
+            memoSquare(5) → ${memoSquare(5)}
+        `;
+
+        // Module pattern
+        const bankAccount = (function() {
+            let balance = 100; // private — no way to reach this from outside
+
+            return {
+                deposit(amount) {
+                    balance += amount;
+                    return balance;
+                },
+                withdraw(amount) {
+                    if (amount > balance) return "insufficient funds";
+                    balance -= amount;
+                    return balance;
+                },
+                getBalance() {
+                    return balance;
+                }
+            };
+        })();
+        document.getElementById("module-output").innerHTML = `
+            starting balance → ${bankAccount.getBalance()}<br>
+            deposit(50) → ${bankAccount.deposit(50)}<br>
+            withdraw(30) → ${bankAccount.withdraw(30)}<br>
+            bankAccount.balance directly → ${bankAccount.balance} (undefined — stays private)
+        `;
+    </script>
+</body>
+</html>
