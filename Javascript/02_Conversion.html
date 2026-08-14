@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Conversion</title>
+    <style>
+        body{ font-family: sans-serif; padding: 16px; }
+        .output{
+            background: #f8f9fa;
+            border-left: 4px solid #4f4a57;
+            padding: 8px 12px;
+            margin: 6px 0;
+            font-family: monospace;
+        }
+        code{ background: #eee; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Type Conversion</h1>
+    <p>JavaScript converts values between types in two ways: <strong>explicit</strong> (you ask for it) and <strong>implicit</strong> (JS does it for you, sometimes surprisingly).</p>
+
+    <h2>Explicit Conversion — you ask for it</h2>
+    <p><code>String(value)</code>, <code>Number(value)</code>, and <code>Boolean(value)</code> convert on purpose, so the result is predictable.</p>
+    <div id="explicit-output" class="output"></div>
+
+    <h2>parseInt / parseFloat</h2>
+    <p>Unlike <code>Number()</code>, which fails on anything not fully numeric, <code>parseInt</code>/<code>parseFloat</code> read a number from the <strong>start</strong> of a string and ignore the rest.</p>
+    <div id="parse-output" class="output"></div>
+
+    <h2>Implicit Conversion — JS does it for you</h2>
+    <p>This happens automatically when operators mix types. It's the source of most "JavaScript is weird" jokes.</p>
+    <div id="implicit-output" class="output"></div>
+
+    <h2>Truthy and Falsy</h2>
+    <p>Every value is "truthy" or "falsy" when used where a boolean is expected (like an <code>if</code> condition). There are only <strong>six falsy values</strong> in JS: <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>. Everything else — including <code>"0"</code> and <code>[]</code> — is truthy.</p>
+    <div id="truthy-output" class="output"></div>
+
+    <h2>Common Gotchas</h2>
+    <p>These trip people up because <code>+</code> means both addition and string concatenation, while <code>-</code>, <code>*</code>, <code>/</code> only ever mean math.</p>
+    <div id="gotcha-output" class="output"></div>
+
+    <script>
+        // Explicit conversion
+        document.getElementById("explicit-output").innerHTML = `
+            String(42) → "${String(42)}" (type: ${typeof String(42)})<br>
+            Number("42") → ${Number("42")} (type: ${typeof Number("42")})<br>
+            Number("hello") → ${Number("hello")} (invalid text converts to NaN)<br>
+            Boolean(1) → ${Boolean(1)}<br>
+            Boolean(0) → ${Boolean(0)}<br>
+            Boolean("") → ${Boolean("")}<br>
+            Boolean("hi") → ${Boolean("hi")}
+        `;
+
+        // parseInt / parseFloat
+        document.getElementById("parse-output").innerHTML = `
+            parseInt("42px") → ${parseInt("42px")} (stops at the first non-digit)<br>
+            parseFloat("3.14 meters") → ${parseFloat("3.14 meters")}<br>
+            Number("42px") → ${Number("42px")} (Number() gives up entirely and returns NaN)
+        `;
+
+        // Implicit conversion
+        document.getElementById("implicit-output").innerHTML = `
+            "5" + 3 → "${"5" + 3}" (+ sees a string, so it concatenates)<br>
+            "5" - 3 → ${"5" - 3} (- only means math, so "5" is converted to a number)<br>
+            "5" * "2" → ${"5" * "2"}<br>
+            true + 1 → ${true + 1} (true converts to 1)<br>
+            false + 1 → ${false + 1} (false converts to 0)<br>
+            "5" + true → "${"5" + true}" (true becomes the string "true")
+        `;
+
+        // Truthy / falsy
+        let falsyValues = [false, 0, "", null, undefined, NaN];
+        let truthyExamples = ["0", "false", [], {}];
+        document.getElementById("truthy-output").innerHTML = `
+            Falsy values: ${falsyValues.map(v => Boolean(v)).join(", ")} (all six are false)<br>
+            "0" (string) is truthy → ${Boolean("0")}<br>
+            [] (empty array) is truthy → ${Boolean([])}<br>
+            {} (empty object) is truthy → ${Boolean({})}
+        `;
+
+        // Gotchas
+        document.getElementById("gotcha-output").innerHTML = `
+            1 + "2" + 3 → "${1 + "2" + 3}" (left to right: 1+"2" becomes "12", then "12"+3 becomes "123")<br>
+            1 + 2 + "3" → "${1 + 2 + "3"}" (1+2 is math first since both are numbers, then +"3" concatenates)<br>
+            "10" == 10 → ${"10" == 10} (== converts types before comparing)<br>
+            "10" === 10 → ${"10" === 10} (=== never converts — different types are just not equal)<br>
+            null == undefined → ${null == undefined} (a special case — they're loosely equal to each other only)
+        `;
+    </script>
+</body>
+</html>

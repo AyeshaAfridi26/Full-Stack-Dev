@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions And Scope</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+    code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+</style>
+</head>
+<body>
+    <h1>Functions</h1>
+    <p>A function is a reusable block of code. Scope determines <strong>where</strong> a variable can be accessed from.</p>
+   <!-- 
+DECLARING a function (defining it — the recipe):
+  function functionName(parameters) {
+    // code that runs when called
+    return value;  // optional
+  } 
+    
+   CALLING a function (using it — making the coffee):
+  functionName(arguments);
+
+  PARAMETERS vs ARGUMENTS:
+    Parameters → the names in the function definition (the labels)
+    Arguments  → the actual values you pass when calling (the data)
+
+  function greet(name) {  ← 'name' is a PARAMETER
+    return `Hello, ${name}`;
+  }-->
+    <p>You declare a function like this:</p>
+    <p>
+        <code>
+             function functionName(parameters) {
+    <br>// code that runs when called
+    <br>return value;  // optional
+  } 
+        </code>
+    </p>
+<p> Parameters → the names in the function definition (the labels)
+    <br>Arguments  → the actual values you pass when calling (the data)</p>
+<p>
+    CALLING a function (using it — making the coffee):
+ <br> <code>functionName(arguments);</code>
+</p>
+<h2>Functions With Multiple Parameters</h2>
+<p>
+    <code>
+        function calculateArea(width, height) {
+ <br>const area = width * height;
+  <br>return area;
+}
+
+<br>const roomArea = calculateArea(5, 4);
+<br>console.log("Room area:", roomArea, "sq meters");   // 20
+
+
+    </code>
+</p>
+
+<!-- /*
+  Default parameters provide a fallback value when an argument
+  is not passed or is undefined.
+
+  Before default parameters, developers had to write:
+  function greet(name) {
+    name = name || "Guest";   // old way
+  }
+
+  Now you just write:
+  function greet(name = "Guest") {   // clean modern way
+    return `Hello, ${name}`;
+  } -->
+<h3>Default Parameters</h3>
+<p>Default parameters provide a fallback value when an argument
+  is not passed or is undefined.
+</p>
+<p><code>
+     function greet(name = "Guest") {   // clean modern way
+   <br> return `Hello, ${name}`;
+  }
+</code></p>
+<p>
+    <code>
+        
+<br>function greetUser(name = "Guest", role = "visitor") {
+  <br>return `Hello, ${name}! You are logged in as a ${role}.`;
+}
+
+<br>console.log(greetUser("Ayesha", "admin"));   // uses both arguments
+<br>console.log(greetUser("Sara"));              // role defaults to "visitor"
+<br>console.log(greetUser());                    // both use defaults
+
+    </code>
+</p>
+
+<h2>Function Expression</h2>
+<p>A function expression stores a function in a variable.
+  The function itself has no name — it is "anonymous".
+</p>
+<p>Syntax:<code>
+      
+  <br>const myFunc = function(params) {
+    <br>return value;
+  };
+</code></p>
+<p><pre>
+     FUNCTION DECLARATION vs FUNCTION EXPRESSION:
+
+  Declaration:
+    function greet() { ... }
+    → Can be called BEFORE it is defined (hoisting)
+    → The function is available throughout its entire scope
+
+    greet();
+    
+    function greet(){console.log("Hello")}
+
+  Expression:
+    const greet = function() { ... }
+    → Can only be called AFTER it is defined
+    → More predictable — behaves like a variable
+
+</pre></p>
+<h3>Hoisting</h3>
+<p>
+     JavaScript moves function declarations to the top before running.
+  This means you can call a declared function before you wrote it.
+  Function expressions are NOT hoisted — they behave like variables.
+</p>
+<p>
+    <code>
+        <pre>
+            // Function expression
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log("3 * 4 =", multiply(3, 4));   // 12
+
+
+// Assigned to variable — can be passed around like any value
+const myOperation = multiply;
+console.log("Using myOperation:", myOperation(5, 6));   // 30
+
+// Hoisting example
+console.log(hoistedFunc());   // works! — declaration is hoisted
+
+function hoistedFunc() {
+  return "I was hoisted to the top!";
+}
+        </pre>
+    </code>
+</p>
+<p>
+    <br>This would FAIL — expression not hoisted:
+<br>console.log(notHoisted());  // TypeError
+<br>const notHoisted = function() { return "nope"; };
+
+</p>
+<h1>Scope</h1>
+<p>SCOPE determines where a variable is accessible.</p>
+<p><pre>
+    THREE types of scope in JavaScript:
+
+  GLOBAL SCOPE:
+    Variables declared outside any function or block.
+    Accessible everywhere — the "hallway".
+    Avoid polluting global scope with too many variables.
+
+  FUNCTION SCOPE:
+    Variables declared inside a function.
+    Only accessible within that function — the "room".
+    They die when the function finishes.
+
+  BLOCK SCOPE (let and const only):
+    Variables declared inside { } — like if blocks and loops.
+    Only accessible within that block.
+    var does NOT respect block scope — another reason to avoid it!
+</pre></p>
+<p>
+    <code><pre>
+        // Global scope
+const globalVar = "I am global — accessible everywhere";
+
+function demoScope() {
+  // Function scope
+  const functionVar = "I only exist inside demoScope()";
+
+  console.log(globalVar);    //  accessible — global
+  console.log(functionVar);  //  accessible — same function
+
+  if (true) {
+    // Block scope
+    const blockVar = "I only exist inside this if block";
+    let  blockLet  = "me too";
+    var  blockVar2 = "I ignore block scope! (var)";
+
+    console.log(blockVar);   //  accessible — same block
+  }
+
+  // console.log(blockVar);  //  ReferenceError — out of scope
+  console.log(blockVar2);    //  var ignores block scope!
+}
+
+demoScope();
+console.log(globalVar);     //  accessible — global
+// console.log(functionVar);//  ReferenceError — out of scope
+
+// Nested scope — inner can access outer, outer cannot access inner
+function outer() {
+  const outerVar = "I am outer";
+
+  function inner() {
+    const innerVar = "I am inner";
+    console.log(outerVar);   //  inner can see outer
+    console.log(innerVar);   //  inner can see itself
+  }
+
+  inner();
+  // console.log(innerVar);  //  outer cannot see inner
+}
+
+outer();
+    </pre></code>
+</p>
+
+
+<script>
+    function greet(name) {
+  return `Hello, ${name}! Welcome to JavaScript.`;
+}
+console.log(greet("Ayesha"));   // Hello, Ayesha! Welcome to JavaScript.
+console.log(greet("Sara"));     // Hello, Sara! Welcome to JavaScript.
+
+ </script> 
+</body>
+</html>
