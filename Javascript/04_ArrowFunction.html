@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Functions</title>
+</head>
+<style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+ code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+
+</style>
+<body>
+    <h1>Arrow Function</h1>
+    <p><pre>
+         Arrow functions are a shorter syntax for writing functions.
+  Introduced in ES6 (2015) — the modern way to write functions.
+    </pre></p>
+    <p> Syntax Evolution:
+        <code>
+            <pre>
+             // Regular function:
+  function add(a, b) {
+    return a + b;
+  }
+
+  // Function expression:
+  const add = function(a, b) {
+    return a + b;
+  };
+
+  // Arrow function (full):
+  const add = (a, b) => {
+    return a + b;
+  };
+   a => a*a
+  // Arrow function (short — one expression, implicit return):
+  const add = (a, b) => a + b;  
+            </pre>
+        </code>
+    </p>
+<p>
+    <pre>
+          SHORTHAND RULES:
+  → One parameter: can drop parentheses
+    const double = n => n * 2;
+
+  → No parameters: empty parentheses required
+    const greet = () => "Hello!";
+
+  → Single expression: drop curly braces and return keyword
+    const square = n => n * n;
+
+  → Multiple lines: keep curly braces and explicit return
+    const complex = (a, b) => {
+      const result = a * b;
+      return result + 10;
+    };
+    </pre>
+</p>
+
+<script>
+    const square = (n) => {
+  return n * n;
+};
+
+// Short arrow function — single expression, no return needed
+const cube = n => n * n * n;
+
+// No parameters
+const getYear = () => new Date().getFullYear();
+
+// Multiple parameters
+const fullName = (first, last) => `${first} ${last}`;
+
+console.log("\n=== ARROW FUNCTIONS ===");
+console.log("square(5):", square(5));          // 25
+console.log("cube(3):", cube(3));              // 27
+console.log("getYear():", getYear());          // current year
+console.log("fullName():", fullName("Ayesha", "Khan"));  // Ayesha Khan
+
+</script>    
+</body>
+</html>
