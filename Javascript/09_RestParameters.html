@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Parameter</title>
+<style>
+       * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+    code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+</style>
+</head>
+<body>
+<h1>Rest Parameters</h1>
+<p>lets see if we can handle infinite parameters</p>
+    <p>
+        <pre> Rest parameters let a function accept any number of arguments.
+  They collect all extra arguments into an array.
+
+</pre>    </p>
+<p><pre><code>
+     Syntax: ...paramName (three dots before the name)
+  The rest parameter must always be the LAST parameter.
+console.log("\n=== REST PARAMETERS ===");
+
+function sum(...numbers) {
+  return numbers.reduce((total, n) => total + n, 0);
+}
+
+console.log("sum(1,2,3):", sum(1, 2, 3));           // 6
+console.log("sum(1,2,3,4,5):", sum(1, 2, 3, 4, 5)); // 15
+console.log("sum(10,20):", sum(10, 20));             // 30
+
+// Mix of named and rest parameters
+function introduce(greeting, ...names) {
+  return `${greeting}, ${names.join(" and ")}!`;
+}
+
+console.log(introduce("Hello", "Ayesha"));               // Hello, Ayesha!
+console.log(introduce("Hi", "Ayesha", "Sara", "Omar"));  // Hi, Ayesha and Sara and Omar!
+
+</code></pre></p>
+<p><pre>function sum(...numbers) {
+    // numbers is an array of all arguments passed
+  }
+
+  sum(1, 2, 3)       → numbers = [1, 2, 3]
+  sum(1, 2, 3, 4, 5) → numbers = [1, 2, 3, 4, 5]
+
+  Do not confuse with SPREAD operator (same syntax, different use):
+  Rest   → collects values INTO an array (in function params)
+  Spread → spreads values OUT of an array (covered in File 4)
+*/</pre></p>
+</body>
+</html>
