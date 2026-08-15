@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default paramters</title>
+<style>
+     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+     code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+</style>
+</head>
+<body>
+    <h1>Default parameter</h1>
+    <p> Default parameters provide a fallback value when an argument
+  is not passed or is undefined.
+</p>
+<p>
+    <code><pre>
+        
+function greetUser(name = "Guest", role = "visitor") {
+  return `Hello, ${name}! You are logged in as a ${role}.`;
+}
+
+console.log(greetUser("Ayesha", "admin"));   // uses both arguments
+console.log(greetUser("Sara"));              // role defaults to "visitor"
+console.log(greetUser());                    // both use defaults
+
+function power(base, exponent = 2) {
+  return base ** exponent;
+}
+
+console.log(power(3));      // 9  (3 squared — exponent defaults to 2)
+console.log(power(3, 3));   // 27 (3 cubed)
+
+
+    </pre></code>
+</p>
+    
+</body>
+</html>
