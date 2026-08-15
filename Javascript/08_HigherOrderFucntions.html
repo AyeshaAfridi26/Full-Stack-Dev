@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher Order Funcntions</title>
+<style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+     code {
+      background: #21262d;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #ff7b72;
+    }
+</style>
+</head>
+<body>
+    <h1>Higher Order Functions</h1>
+    <p>
+       <pre>
+         A Higher-Order Function (HOF) is a function that either:
+  → Takes another function as an argument, OR
+  → Returns a function
+  
+  This sounds complicated but you use them ALL THE TIME.
+  .map(), .filter(), .forEach() are all higher-order functions.
+  setTimeout() and addEventListener() are higher-order functions.
+  In React, almost everything is a higher-order function.
+
+  WHY THEY MATTER:
+  They let you write more flexible, reusable code.
+  Instead of writing "what to do with each item" inside the loop,
+  you pass in a function that describes the behaviour.
+
+       </pre> 
+    </p>
+
+    <code>
+        <pre>
+            // Function that takes a function as argument
+function applyOperation(a, b, operation) {
+  return operation(a, b);
+}
+
+const addFn  = (a, b) => a + b;
+const subFn  = (a, b) => a - b;
+const mulFn  = (a, b) => a * b;
+
+console.log(applyOperation(10, 5, addFn));   // 15
+console.log(applyOperation(10, 5, subFn));   // 5
+console.log(applyOperation(10, 5, mulFn));   // 50
+
+        </pre>
+    </code>
+
+    <p>
+        <code>
+            <pre>
+                // Can also pass arrow function directly (inline)
+console.log(applyOperation(10, 5, (a, b) => a ** b));   // 100000
+
+// Function that returns a function
+function makeMultiplier(factor) {
+  return (number) => number * factor;
+}
+
+const double = makeMultiplier(2);
+const triple = makeMultiplier(3);
+const times10 = makeMultiplier(10);
+
+console.log("double(5):", double(5));     // 10
+console.log("triple(5):", triple(5));     // 15
+console.log("times10(5):", times10(5));   // 50
+
+            </pre>
+        </code>
+    </p>
+
+    <footer><p>Sounded scary right?! well it did to me but i think it wasn't too much</p></footer>
+</body>
+</html>
