@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating and Accessing Arrays</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+      code {
+      background: #21262d; padding: 2px 7px;
+      border-radius: 4px; font-size: 13px; color: #ff7b72;
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Arrays</h1>
+    <p>
+        <pre>
+             An array is an ordered list of values.
+  Values can be any type — strings, numbers, booleans, objects,
+  even other arrays (nested arrays).
+        </pre>
+    </p>
+    <h2>Creating Arrays</h2>
+    <p>
+        <pre>
+            <code>
+// Array literal — most common way
+const fruits    = ["apple", "banana", "mango", "orange"];
+const numbers   = [1, 2, 3, 4, 5];
+const mixed     = ["Ayesha", 22, true, null];   // mixed types allowed
+const empty     = [];                            // empty array
+
+// Array of arrays (2D array)
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+console.log("=== CREATING ARRAYS ===");
+console.log("fruits:", fruits);
+console.log("numbers:", numbers);
+console.log("mixed:", mixed);
+console.log("matrix[1][2]:", matrix[1][2]);   // 6 (row 1, column 2)
+
+// Array.from() — create array from something array-like
+const fromString = Array.from("hello");   // ["h","e","l","l","o"]
+const fromRange  = Array.from({length: 5}, (_, i) => i + 1);   // [1,2,3,4,5]
+
+console.log("Array.from('hello'):", fromString);
+console.log("Array.from range:", fromRange);
+
+            </code>
+        </pre>
+    </p>
+
+    <h2>Accessing Array</h2>
+    <p><pre>
+Access items using square bracket notation: arr[index]
+Index starts at 0 — this catches everyone out at first.
+arr[0]             → first item
+arr[1]             → second item
+arr[arr.length-1]  → last item
+arr.at(-1)         → last item (modern way — negative indexing)
+arr.at(-2)         → second to last
+.at() is the modern method that supports negative indexing.
+arr[-1] does NOT work in JavaScript (unlike Python).
+*/
+    </pre></p>
+    <p>Example</p>
+    <p>
+        <code>
+            <pre>
+console.log("\n=== ACCESSING ITEMS ===");
+
+const skills = ["HTML", "CSS", "JavaScript", "Python", "React"];
+
+console.log("skills[0]:", skills[0]);               // HTML
+console.log("skills[2]:", skills[2]);               // JavaScript
+console.log("skills[skills.length-1]:", skills[skills.length-1]); // React
+console.log("skills.at(-1):", skills.at(-1));       // React (modern)
+console.log("skills.at(-2):", skills.at(-2));       // Python
+
+// length property
+console.log("length:", skills.length);   // 5
+
+// Checking if something is an array
+console.log("Array.isArray(skills):", Array.isArray(skills));   // true
+console.log("Array.isArray('hello'):", Array.isArray("hello")); // false
+
+
+            </pre>
+        </code>
+    </p>
+    
+</body>
+</html>
