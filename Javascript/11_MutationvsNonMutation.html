@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutation vs Nonmutation Method</title>
+<style>
+     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+      h1  { color: rgb(177, 97, 97); font-size: 26px; margin-bottom: 6px; }
+    h2  { color: #7f6ac7; font-size: 18px; margin: 28px 0 10px; border-bottom: 2px solid #2d2d4e; padding-bottom: 6px; }
+    p   { color: #8ba3be; font-size: 14px; margin-bottom: 10px; }
+    code {
+      background: #424b57; padding: 2px 7px;
+      border-radius: 4px; font-size: 13px; color: #ff7b72;
+    }
+</style>
+</head>
+<body>
+    <h1>Mutation v Nonmutation Methods</h1>
+    <p>Some methods CHANGE the original array (mutate it).
+    Some methods leave the original alone and return a NEW array.
+    Knowing which is which saves hours of debugging.
+</p>
+<h2>Mutation Methods</h2>
+<p> These methods CHANGE the original array.
+  Be careful — if you need the original, make a copy first.
+</p>
+<p>Example</p>
+<p><pre>
+  push(item)       → add to END, returns new length
+  pop()            → remove from END, returns removed item
+  unshift(item)    → add to START, returns new length
+  shift()          → remove from START, returns removed item
+  splice(i, n, x)  → at index i, remove n items, optionally insert x
+
+</pre></p>
+<p><code><pre>
+console.log("\n=== MUTATION METHODS ===");
+
+const colors = ["red", "green", "blue"];
+console.log("original:", [...colors]);   // spread to log a copy
+
+// push — add to end
+colors.push("yellow");
+console.log("after push('yellow'):", colors);   // ["red","green","blue","yellow"]
+
+// pop — remove from end
+const removed = colors.pop();
+console.log("after pop():", colors, "| removed:", removed);
+
+// unshift — add to start
+colors.unshift("purple");
+console.log("after unshift('purple'):", colors);
+
+// shift — remove from start
+const First = colors.shift();
+console.log("after shift():", colors, "| removed:", First);
+
+// splice(startIndex, deleteCount, ...itemsToInsert)
+const langs = ["HTML", "CSS", "Java", "Python"];
+langs.splice(2, 1, "JavaScript");   // at index 2, remove 1, insert "JavaScript"
+console.log("after splice:", langs);   // ["HTML","CSS","JavaScript","Python"]
+
+// splice to just delete
+langs.splice(3, 1);   // remove Python
+console.log("after splice delete:", langs);
+
+// splice to just insert
+langs.splice(2, 0, "React");   // at index 2, remove 0, insert "React"
+console.log("after splice insert:", langs);
+
+
+</pre></code></p>
+
+<h2>Nonmutation Methods</h2>
+<p>  These methods do NOT change the original array.
+  They return a NEW array — the original is untouched.
+  This is the preferred approach in modern JS and React.
+</p>
+<p><pre>
+Example:
+slice(start, end)  → extract a portion (end not included)
+concat(arr)        → merge arrays
+[...spread]        → copy or merge using spread operator
+
+</pre></p>
+<p>
+    <code>
+        <pre>
+console.log("\n=== NON-MUTATION METHODS ===");
+
+const original = [1, 2, 3, 4, 5];
+
+// slice(start, end) — end is NOT included
+const portion = original.slice(1, 4);   // items at index 1, 2, 3
+console.log("slice(1,4):", portion);    // [2, 3, 4]
+console.log("original unchanged:", original);   // [1,2,3,4,5]
+
+// slice with no arguments = copy the whole array
+const copy = original.slice();
+console.log("slice() copy:", copy);
+
+// concat — merge arrays
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const merged = arr1.concat(arr2);
+console.log("concat:", merged);   // [1,2,3,4,5,6]
+
+// Spread operator — modern way to copy and merge
+const copySpread = [...original];
+const mergeSpread = [...arr1, ...arr2, 7, 8];
+console.log("spread copy:", copySpread);
+console.log("spread merge:", mergeSpread);   // [1,2,3,4,5,6,7,8]
+
+
+        </pre>
+    </code>
+</p>
+    
+</body>
+</html>
