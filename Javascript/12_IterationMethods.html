@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iteration Methods</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1  { color: white; font-size: 26px; margin-bottom: 6px; }
+    h2  { color: #a78bfa; font-size: 18px; margin: 28px 0 10px; border-bottom: 2px solid #2d2d4e; padding-bottom: 6px; }
+    p   { color: #8b949e; font-size: 14px; margin-bottom: 10px; }
+    code {
+      background: #21262d; padding: 2px 7px;
+      border-radius: 4px; font-size: 13px; color: #ff7b72;
+    }
+    </style>
+</head>
+<body>
+    <h1>Iteration Methos</h1>
+    <p>  These methods loop over the array and do something with each item.</p>
+<P><PRE>
+    
+  forEach(fn)        → loop and run a function — returns nothing
+  map(fn)            → transform each item — returns NEW array
+  filter(fn)         → keep items that pass test — returns NEW array
+  reduce(fn, init)   → combine all items into one value
+THE KEY DIFFERENCE:
+  forEach → just runs code for each item (like a for loop)
+  map     → creates a NEW array of transformed items
+  filter  → creates a NEW array of filtered items
+  reduce  → creates a SINGLE value from all items
+
+  MAP is used constantly in React to render lists:
+  skills.map(skill => <SkillCard skill={skill} />)
+*/
+
+</PRE></P>
+<p><code><pre>
+    
+console.log("\n=== ITERATION METHODS ===");
+
+const nums = [1, 2, 3, 4, 5];
+
+// forEach — loop without creating new array
+console.log("forEach:");
+nums.forEach((num, index) => {
+  console.log(`  [${index}] → ${num}`);
+});
+
+// map — transform each item into something new
+const doubled   = nums.map(n => n * 2);
+const squared   = nums.map(n => n ** 2);
+const asStrings = nums.map(n => `item-${n}`);
+
+console.log("map doubled:", doubled);     // [2,4,6,8,10]
+console.log("map squared:", squared);     // [1,4,9,16,25]
+console.log("map strings:", asStrings);   // ["item-1",...]
+
+// map on array of objects — very common in React
+const users = [
+  { id: 1, name: "Ayesha", role: "developer" },
+  { id: 2, name: "Sara",   role: "designer"  },
+  { id: 3, name: "Omar",   role: "manager"   },
+];
+
+const names     = users.map(user => user.name);
+const upperNames = users.map(user => user.name.toUpperCase());
+console.log("map names:", names);
+console.log("map upper:", upperNames);
+
+// filter — keep only items that pass the test
+const evens     = nums.filter(n => n % 2 === 0);
+const bigNums   = nums.filter(n => n > 3);
+const developers = users.filter(u => u.role === "developer");
+
+console.log("filter evens:", evens);         // [2,4]
+console.log("filter > 3:", bigNums);         // [4,5]
+console.log("filter developers:", developers);
+
+// reduce — accumulate to single value
+const sum     = nums.reduce((acc, n) => acc + n, 0);
+const product = nums.reduce((acc, n) => acc * n, 1);
+const max     = nums.reduce((acc, n) => n > acc ? n : acc, 0);
+
+console.log("reduce sum:", sum);         // 15
+console.log("reduce product:", product); // 120
+console.log("reduce max:", max);         // 5
+
+// Chaining map and filter together
+const result = nums
+  .map(n => n * 2)         // [2,4,6,8,10]
+  .filter(n => n > 6);     // [8,10]
+
+console.log("map then filter:", result);   // [8,10]
+</pre></code></p>
+
+
+    
+</body>
+</html>
