@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      padding: 30px 20px;
+      line-height: 1.8;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    h1  { color: white; font-size: 26px; margin-bottom: 6px; }
+    h2  { color: #a78bfa; font-size: 18px; margin: 28px 0 10px; border-bottom: 2px solid #2d2d4e; padding-bottom: 6px; }
+    p   { color: #8b949e; font-size: 14px; margin-bottom: 10px; }
+    code {
+      background: #21262d; padding: 2px 7px;
+      border-radius: 4px; font-size: 13px; color: #ff7b72;
+    }
+    </style>
+</head>
+<body>
+    <h1>Checking Methods</h1>
+    <p>Checking methods see if any/all items pass a condition</p>
+    <p><pre>
+  some(fn)  → does AT LEAST ONE item pass the test? → true/false
+  every(fn) → do ALL items pass the test? → true/false
+
+  Think of them as:
+  some  → OR logic  (at least one must be true)
+  every → AND logic (all must be true)
+
+    </pre></p>
+    <p>
+        <code>
+            <pre>
+console.log("\n=== CHECKING METHODS ===");
+
+const scores = [45, 78, 92, 60, 55];
+
+console.log("some > 90:", scores.some(s => s > 90));     // true (92 passes)
+console.log("every > 40:", scores.every(s => s > 40));   // true (all > 40)
+console.log("every > 50:", scores.every(s => s > 50));   // false (45 and 55 fail)
+
+// Practical: check if any user is an admin
+const team = [
+  { name: "Ayesha", isAdmin: false },
+  { name: "Sara",   isAdmin: true  },
+  { name: "Omar",   isAdmin: false },
+];
+
+const hasAdmin    = team.some(u => u.isAdmin);
+const allVerified = team.every(u => u.name.length > 2);
+
+console.log("has admin:", hasAdmin);       // true
+console.log("all verified:", allVerified); // true
+
+            </pre>
+        </code>
+    </p>
+
+<h1>Sorting Methods</h1>
+<p>Decide the sequence</p>
+<p><pre>
+   sort()     → sorts in place — MUTATES the original array!
+  reverse()  → reverses in place — MUTATES the original array!
+
+  WARNING: sort() by default converts items to STRINGS and sorts.
+  This means [10, 9, 2] sorts to [10, 2, 9] (wrong for numbers!)
+
+  Always provide a comparator function for numbers:
+  arr.sort((a, b) => a - b)   → ascending
+  arr.sort((a, b) => b - a)   → descending
+
+  To sort without mutating — sort a COPY:
+  [...original].sort((a,b) => a - b)
+   
+</pre></p>
+
+<p><code>
+    <pre>
+console.log("\n=== SORTING ===");
+
+// Wrong — default sort treats numbers as strings!
+const wrong = [10, 9, 2, 1, 100];
+console.log("default sort (wrong):", [...wrong].sort());
+// [1, 10, 100, 2, 9] — sorts as strings, not numbers!
+
+// Correct — provide comparator
+console.log("sort ascending:", [...wrong].sort((a,b) => a - b));
+// [1, 2, 9, 10, 100]
+console.log("sort descending:", [...wrong].sort((a,b) => b - a));
+// [100, 10, 9, 2, 1]
+
+// Sort strings alphabetically
+const words = ["banana", "apple", "mango", "cherry"];
+console.log("sort alpha:", [...words].sort());
+// ["apple","banana","cherry","mango"]
+
+// Sort objects by property
+const sortedPeople = [...people].sort((a, b) => a.age - b.age);
+console.log("sort by age:", sortedPeople);
+
+// reverse
+const arr = [1, 2, 3, 4, 5];
+console.log("reversed:", [...arr].reverse());   // [5,4,3,2,1]
+
+
+    </pre>
+</code>
+</p>
+    
+</body>
+</html>
