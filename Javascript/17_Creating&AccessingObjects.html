@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating and Accessing Objects</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 30px 20px;
+            line-height: 1.8;
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { color: white; font-size: 26px; margin-bottom: 6px; }
+        h2 { color: #a78bfa; font-size: 18px; margin: 28px 0 10px; border-bottom: 2px solid #2d2d4e; padding-bottom: 6px; }
+        p { color: #8b949e; font-size: 14px; margin-bottom: 10px; }
+        pre { white-space: pre-wrap; margin-bottom: 12px; }
+        code {
+            background: #21262d;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #ff7b72;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+    <h1>Creating and Accessing Objects</h1>
+    <p>Objects store related information as key-value pairs. A key is also called a property.</p>
+
+    <pre>
+object.key       → access a property with dot notation
+object["key"]    → access a property with bracket notation
+object[keyName]  → use a variable to select a property
+    </pre>
+
+    <h2>Creating an Object</h2>
+    <p><code><pre>
+const user = {
+  name: "Ayesha",
+  age: 22,
+  isStudent: true,
+  skills: ["HTML", "CSS", "JavaScript"],
+  address: {
+    city: "Lahore",
+    country: "Pakistan"
+  }
+};
+    </pre></code></p>
+
+    <h2>Accessing Properties</h2>
+    <p>Use dot notation for normal property names. Bracket notation is useful for dynamic keys or keys containing spaces.</p>
+    <p><code><pre>
+// Dot notation
+console.log(user.name); // "Ayesha"
+console.log(user.age);  // 22
+
+// Bracket notation
+console.log(user["isStudent"]); // true
+
+// Property name stored in a variable
+const property = "name";
+console.log(user[property]); // "Ayesha"
+
+// Nested object and array values
+console.log(user.address.city); // "Lahore"
+console.log(user.skills[2]);     // "JavaScript"
+
+// Keys containing spaces require bracket notation
+const product = {
+  name: "Laptop",
+  "delivery time": "2 days"
+};
+
+console.log(product["delivery time"]); // "2 days"
+    </pre></code></p>
+
+    <h2>Adding, Updating, and Deleting</h2>
+    <p>Object properties can be changed even when the object was declared with <code>const</code>.</p>
+    <p><code><pre>
+user.email = "ayesha@example.com"; // add
+user.age = 23;                      // update
+delete user.isStudent;              // delete
+
+console.log(user.email); // "ayesha@example.com"
+console.log(user.age);   // 23
+    </pre></code></p>
+
+    <h2>Object Methods</h2>
+    <p>A function stored inside an object is called a method. Use <code>this</code> to access another property in the same object.</p>
+    <p><code><pre>
+const person = {
+  firstName: "Omar",
+  lastName: "Khan",
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+};
+
+console.log(person.fullName()); // "Omar Khan"
+    </pre></code></p>
+
+    <h2>Computed Property Names</h2>
+    <p>Square brackets let you use a variable as a key while creating an object.</p>
+    <p><code><pre>
+const selectedKey = "role";
+
+const employee = {
+  name: "Sara",
+  [selectedKey]: "Developer"
+};
+
+console.log(employee.role); // "Developer"
+    </pre></code></p>
+
+    <h2>Useful Object Methods</h2>
+    <p><code><pre>
+const course = {
+  title: "JavaScript Basics",
+  lessons: 20,
+  completed: false
+};
+
+console.log(Object.keys(course));
+// ["title", "lessons", "completed"]
+
+console.log(Object.values(course));
+// ["JavaScript Basics", 20, false]
+
+console.log(Object.entries(course));
+// [["title", "JavaScript Basics"], ["lessons", 20], ...]
+
+console.log("title" in course);              // true
+console.log(course.hasOwnProperty("price")); // false
+    </pre></code></p>
+    </main>
+</body>
+</html>
